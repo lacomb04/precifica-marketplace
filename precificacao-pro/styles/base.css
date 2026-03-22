@@ -1,0 +1,78 @@
+:root {
+  --bg: #050c1a;
+  --bg2: #071120;
+  --card: #091c2e;
+  --card2: #0d2440;
+  --border: rgba(0, 140, 255, 0.12);
+  --border2: rgba(0, 140, 255, 0.28);
+  --text: #d6e8ff;
+  --muted: #4a6880;
+  --accent: #1a8cff;
+  --radius: 16px;
+  --shopee: #ff3300;
+  --shopee-l: #ff7755;
+  --meli: #c8aa00;
+  --meli-l: #e8cc44;
+  --ttr: #fe2c55;
+  --ttb: #25f4ee;
+  --amz: #ff9900;
+  --amz-l: #ffb84d;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Barlow', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 10% -10%, rgba(0, 80, 220, 0.14) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 90% 100%, rgba(0, 40, 160, 0.1) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.page {
+  display: none;
+  position: relative;
+  z-index: 1;
+}
+
+.page.active {
+  display: block;
+}
+
+@keyframes fadeUp {
+  from {
+    transform: translateY(18px);
+    opacity: 0;
+  }
+
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@keyframes pop {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+}

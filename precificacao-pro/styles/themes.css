@@ -1,0 +1,87 @@
+.pg-s .mv {
+  color: var(--shopee-l);
+}
+
+.pg-s input[type='range']::-webkit-slider-thumb {
+  background: var(--shopee);
+}
+
+.pg-s .cbadge {
+  background: rgba(255, 51, 0, 0.08);
+  color: var(--shopee-l);
+  border: 1px solid rgba(255, 51, 0, 0.2);
+}
+
+.pg-s .pvn {
+  color: var(--shopee-l);
+}
+
+.pg-s .rg {
+  background: radial-gradient(circle, rgba(255, 51, 0, 0.18), transparent);
+}
+
+.pg-m .mv {
+  color: var(--meli-l);
+}
+
+.pg-m input[type='range']::-webkit-slider-thumb {
+  background: var(--meli);
+}
+
+.pg-m .cbadge {
+  background: rgba(200, 170, 0, 0.08);
+  color: var(--meli-l);
+  border: 1px solid rgba(200, 170, 0, 0.2);
+}
+
+.pg-m .pvn {
+  color: var(--meli-l);
+}
+
+.pg-m .rg {
+  background: radial-gradient(circle, rgba(0, 140, 255, 0.08), transparent);
+}
+
+.pg-t .mv {
+  color: var(--ttr);
+}
+
+.pg-t input[type='range']::-webkit-slider-thumb {
+  background: var(--ttr);
+}
+
+.pg-t .cbadge {
+  background: rgba(254, 44, 85, 0.08);
+  color: var(--ttr);
+  border: 1px solid rgba(254, 44, 85, 0.2);
+}
+
+.pg-t .pvn {
+  color: var(--ttr);
+}
+
+.pg-t .rg {
+  background: radial-gradient(circle, rgba(254, 44, 85, 0.15), transparent);
+}
+
+.pg-a .mv {
+  color: var(--amz-l);
+}
+
+.pg-a input[type='range']::-webkit-slider-thumb {
+  background: var(--amz);
+}
+
+.pg-a .cbadge {
+  background: rgba(255, 153, 0, 0.08);
+  color: var(--amz-l);
+  border: 1px solid rgba(255, 153, 0, 0.2);
+}
+
+.pg-a .pvn {
+  color: var(--amz-l);
+}
+
+.pg-a .rg {
+  background: radial-gradient(circle, rgba(255, 153, 0, 0.12), transparent);
+}

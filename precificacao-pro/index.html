@@ -1,0 +1,915 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Precificação PRO</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800;900&family=Barlow+Condensed:wght@700;800;900&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles/base.css" />
+    <link rel="stylesheet" href="styles/layout.css" />
+    <link rel="stylesheet" href="styles/components.css" />
+    <link rel="stylesheet" href="styles/themes.css" />
+    <link rel="stylesheet" href="styles/pages/home.css" />
+    <link rel="stylesheet" href="styles/pages/calculator.css" />
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="brand" id="brandHome">
+        Precificação <span style="color: var(--accent)">PRO</span>
+      </div>
+      <div class="nb" id="navBack">← Voltar ao início</div>
+    </nav>
+
+    <div class="page active" id="pgH">
+      <div class="home">
+        <div class="kicker">Calculadora de Precificação 2026</div>
+        <h1 class="htitle">
+          <span class="t1">Precificação</span><span class="t2">PRO</span>
+        </h1>
+        <p class="hsub">
+          Calcule o preço ideal com as taxas reais de cada marketplace.<br />Margem
+          garantida, sem surpresas.
+        </p>
+        <div class="mpg">
+          <div class="mpc mpc-s" data-target-page="shopee">
+            <div class="lbox">
+              <img src="assets/logos/shopee.svg" alt="Shopee" />
+            </div>
+            <div class="mpname">Shopee</div>
+            <div class="mprate">14–20% + taxa fixa/item</div>
+            <div class="mpdesc">
+              Comissão escalonada por faixa de preço. CPF e CNPJ com regras
+              distintas.
+            </div>
+            <div class="mparrow">↗</div>
+          </div>
+          <div class="mpc mpc-m" data-target-page="mercadoLivre">
+            <div class="lbox">
+              <img src="assets/logos/mercado-livre.svg" alt="Mercado Livre" />
+            </div>
+            <div class="mpname">Mercado Livre</div>
+            <div class="mprate">10–19% + custo fixo &lt;R$79</div>
+            <div class="mpdesc">
+              Clássico ou Premium. Taxa fixa para produtos abaixo de R$79.
+            </div>
+            <div class="mparrow">↗</div>
+          </div>
+          <div class="mpc mpc-t" data-target-page="tiktok">
+            <div class="lbox">
+              <span style="font-weight: 800; color: var(--ttr); font-size: 22px"
+                >TT</span
+              >
+            </div>
+            <div class="mpname">TikTok Shop</div>
+            <div class="mprate">6% teto R$50 · 0% 60 dias</div>
+            <div class="mpdesc">
+              Taxa base mais baixa do mercado, com teto por pedido. Afiliados
+              opcionais.
+            </div>
+            <div class="mparrow">↗</div>
+          </div>
+          <div class="mpc mpc-a" data-target-page="amazon">
+            <div class="lbox">
+              <img src="assets/logos/amazon.webp" alt="Amazon" />
+            </div>
+            <div class="mpname">Amazon</div>
+            <div class="mprate">10–15% por categoria</div>
+            <div class="mpdesc">
+              Plano Individual ou Profissional com comissão mínima por item.
+            </div>
+            <div class="mparrow">↗</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page pg-s" id="pgS">
+      <div class="cw">
+        <div class="ch">
+          <div>
+            <div class="cbadge">🛍 Shopee · 2026</div>
+            <div class="ch1">
+              Precificação Shopee<small
+                >Comissão escalonada por faixa de preço</small
+              >
+            </div>
+          </div>
+          <button class="bhow" data-modal-key="shopee">ℹ Como funciona</button>
+        </div>
+        <div class="g2">
+          <div class="crd">
+            <div class="ct">
+              <span class="ctd" style="background: #2244ff"></span>Produto
+            </div>
+            <div class="fld">
+              <label>Preço de Compra <span class="ht">R$</span></label>
+              <div class="iw">
+                <span class="pfx">R$</span
+                ><input type="number" id="sp" value="25" step="0.01" min="0" />
+              </div>
+            </div>
+            <div class="fld">
+              <label>Embalagem <span class="ht">R$</span></label>
+              <div class="iw">
+                <span class="pfx">R$</span
+                ><input
+                  type="number"
+                  id="se"
+                  value="1.50"
+                  step="0.01"
+                  min="0"
+                />
+              </div>
+            </div>
+            <div class="fld">
+              <label>Frete ao cliente <span class="ht">R$</span></label>
+              <div class="iw">
+                <span class="pfx">R$</span
+                ><input type="number" id="sf" value="0" step="0.01" min="0" />
+              </div>
+            </div>
+          </div>
+          <div class="crd">
+            <div class="ct">
+              <span class="ctd" style="background: var(--shopee)"></span>Taxas
+              Shopee
+            </div>
+            <div class="fld">
+              <label>Tipo de vendedor</label>
+              <div class="iw">
+                <select id="sm">
+                  <option value="cnpj">CNPJ</option>
+                  <option value="cpf">CPF comum</option>
+                  <option value="cpf_high_volume">
+                    CPF alto volume (&gt;450 ped/90d)
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="fld">
+              <label>Programa Frete Grátis</label>
+              <div class="iw">
+                <select id="sfp">
+                  <option value="nao">Não</option>
+                  <option value="sim">Sim (+6%)</option>
+                </select>
+              </div>
+            </div>
+            <div class="fld">
+              <label>Shopee Ads (ACOS) <span class="ht">%</span></label>
+              <div class="iw">
+                <span class="pfx">%</span
+                ><input
+                  type="number"
+                  id="sa"
+                  value="0"
+                  step="0.1"
+                  min="0"
+                  max="100"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="crd">
+            <div class="ct">
+              <span class="ctd" style="background: #ccaa00"></span>Marketing
+            </div>
+            <div class="fld">
+              <label>Promoções / Cupons <span class="ht">%</span></label>
+              <div class="iw">
+                <span class="pfx">%</span
+                ><input
+                  type="number"
+                  id="spr"
+                  value="0"
+                  step="0.1"
+                  min="0"
+                  max="100"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="crd">
+            <div class="ct">
+              <span class="ctd" style="background: #cc2244"></span>Impostos &
+              Outros
+            </div>
+            <div class="fld">
+              <label>Imposto <span class="ht">%</span></label>
+              <div class="iw">
+                <span class="pfx">%</span
+                ><input
+                  type="number"
+                  id="si"
+                  value="0"
+                  step="0.1"
+                  min="0"
+                  max="100"
+                />
+              </div>
+            </div>
+            <div class="fld">
+              <label>Outros custos <span class="ht">%</span></label>
+              <div class="iw">
+                <span class="pfx">%</span
+                ><input
+                  type="number"
+                  id="so"
+                  value="0"
+                  step="0.1"
+                  min="0"
+                  max="100"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="mgm sp2">
+            <div class="mr">
+              <h3>🎯 Margem de Lucro Desejada</h3>
+              <div class="mv" id="smd">26%</div>
+            </div>
+            <input
+              type="range"
+              id="smg"
+              min="1"
+              max="80"
+              value="26"
+              data-label-target="smd"
+            />
+            <div class="rm">
+              <span>1%</span><span>20%</span><span>40%</span><span>60%</span
+              ><span>80%</span>
+            </div>
+          </div>
+          <div class="rc sp2">
+            <div class="rg"></div>
+            <div class="rm2">
+              <small>Preço de Venda Sugerido</small>
+              <div class="pvn" id="spv">R$ 0,00</div>
+              <div id="spill"></div>
+            </div>
+            <div class="bkd" id="sbd"></div>
+          </div>
+          <div class="brc sp2">
+            <div class="brl">// distribuição do preço de venda</div>
+            <div class="brt" id="sbar"></div>
+            <div class="lgd" id="sleg"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page pg-m" id="pgM">
+      <div class="cw">
+        <div class="ch">
+          <div>
+            <div class="cbadge">🛒 Mercado Livre · 2026</div>
+            <div class="ch1">
+              Precificação Mercado Livre<small
+                >Clássico 10-14% · Premium 15-19% · custo fixo &lt;R$79</small
+              >
+            </div>
+          </div>
+          <button class="bhow" data-modal-key="mercadoLivre">
+            ℹ Como funciona
+          </button>
+        </div>
+        <div class="g2">
+          <div class="crd">
+            <div class="ct">
+              <span class="ctd" style="background: #2244ff"></span>Produto
+            </div>
+            <div class="fld">
+              <label>Preço de Compra <span class="ht">R$</span></label>
+              <div class="iw">
+                <span class="pfx">R$</span
+                ><input type="number" id="mp" value="25" step="0.01" min="0" />
+              </div>
+            </div>
+            <div class="fld">
+              <label>Embalagem <span class="ht">R$</span></label>
+              <div class="iw">
+                <span class="pfx">R$</span
+                ><input
+                  type="number"
+                  id="me"
+                  value="1.50"
+                  step="0.01"
+                  min="0"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="crd">
+            <div class="ct">
+              <span class="ctd" style="background: var(--meli)"></span>Taxas
+              Mercado Livre
+            </div>
+            <div class="fld">
+              <label>Frete ao cliente <span class="ht">R$</span></label>
+              <div class="iw">
+                <span class="pfx">R$</span
+                ><input type="number" id="mf" value="0" step="0.01" min="0" />
+              </div>
+            </div>
+            <div class="fld">
+              <label
+                >Tipo de anúncio / comissão <span class="ht">%</span></label
+              >
+              <div class="iw">
+                <span class="pfx">%</span
+                ><input
+                  type="number"
+                  id="mc"
+                  value="12"
+                  step="0.1"
+                  min="10"
+                  max="25"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="crd">
+            <div class="ct">
+              <span class="ctd" style="background: #ccaa00"></span>Marketing
+            </div>
+            <div class="fld">
+              <label>Product Ads (ACOS) <span class="ht">%</span></label>
+              <div class="iw">
+                <span class="pfx">%</span
+                ><input
+                  type="number"
+                  id="ma"
+                  value="0"
+                  step="0.1"
+                  min="0"
+                  max="100"
+                />
+              </div>
+            </div>
+            <div class="fld">
+              <label>Promoções / Cupons <span class="ht">%</span></label>
+              <div class="iw">
+                <span class="pfx">%</span
+                ><input
+                  type="number"
+                  id="mpr"
+                  value="0"
+                  step="0.1"
+                  min="0"
+                  max="100"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="crd">
+            <div class="ct">
+              <span class="ctd" style="background: #cc2244"></span>Impostos &
+              Outros
+            </div>
+            <div class="fld">
+              <label>Imposto <span class="ht">%</span></label>
+              <div class="iw">
+                <span class="pfx">%</span
+                ><input
+                  type="number"
+                  id="mi"
+                  value="0"
+                  step="0.1"
+                  min="0"
+                  max="100"
+                />
+              </div>
+            </div>
+            <div class="fld">
+              <label>Outros custos <span class="ht">%</span></label>
+              <div class="iw">
+                <span class="pfx">%</span
+                ><input
+                  type="number"
+                  id="mo"
+                  value="0"
+                  step="0.1"
+                  min="0"
+                  max="100"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="mgm sp2">
+            <div class="mr">
+              <h3>🎯 Margem de Lucro Desejada</h3>
+              <div class="mv" id="mmd">26%</div>
+            </div>
+            <input
+              type="range"
+              id="mmg"
+              min="1"
+              max="80"
+              value="26"
+              data-label-target="mmd"
+            />
+            <div class="rm">
+              <span>1%</span><span>20%</span><span>40%</span><span>60%</span
+              ><span>80%</span>
+            </div>
+          </div>
+          <div class="rc sp2">
+            <div class="rg"></div>
+            <div class="rm2">
+              <small>Preço de Venda Sugerido</small>
+              <div class="pvn" id="mpv">R$ 0,00</div>
+              <div id="mpill"></div>
+            </div>
+            <div class="bkd" id="mbd"></div>
+          </div>
+          <div class="brc sp2">
+            <div class="brl">// distribuição do preço de venda</div>
+            <div class="brt" id="mbar"></div>
+            <div class="lgd" id="mleg"></div>
+          </div>
+          <div class="wb sp2">
+            ⚠
+            <strong>CUSTO FIXO MERCADO LIVRE (produtos abaixo de R$79):</strong
+            ><br />
+            <table class="itbl">
+              <tr>
+                <th>Faixa de Preço</th>
+                <th>Custo Fixo</th>
+              </tr>
+              <tr>
+                <td>Abaixo de R$12,50</td>
+                <td>50% do valor do item</td>
+              </tr>
+              <tr>
+                <td>R$12,50 – R$29,00</td>
+                <td>R$ 6,25/item</td>
+              </tr>
+              <tr>
+                <td>R$29,00 – R$50,00</td>
+                <td>R$ 6,50/item</td>
+              </tr>
+              <tr>
+                <td>R$50,00 – R$79,00</td>
+                <td>R$ 6,75/item</td>
+              </tr>
+              <tr>
+                <td>Acima de R$79,00</td>
+                <td>Sem custo fixo</td>
+              </tr>
+            </table>
+            A calculadora aplica o custo fixo automaticamente com base no preço
+            de venda calculado.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page pg-t" id="pgT">
+      <div class="cw">
+        <div class="ch">
+          <div>
+            <div class="cbadge">🎵 TikTok Shop · 2026</div>
+            <div class="ch1">
+              Precificação TikTok Shop<small
+                >6% de taxa base · 0% nos primeiros 60 dias · Teto
+                R$50/pedido</small
+              >
+            </div>
+          </div>
+          <button class="bhow" data-modal-key="tiktok">ℹ Como funciona</button>
+        </div>
+        <div class="g2">
+          <div class="crd">
+            <div class="ct">
+              <span class="ctd" style="background: #2244ff"></span>Produto
+            </div>
+            <div class="fld">
+              <label>Preço de Compra <span class="ht">R$</span></label>
+              <div class="iw">
+                <span class="pfx">R$</span
+                ><input type="number" id="tp" value="25" step="0.01" min="0" />
+              </div>
+            </div>
+            <div class="fld">
+              <label>Embalagem <span class="ht">R$</span></label>
+              <div class="iw">
+                <span class="pfx">R$</span
+                ><input
+                  type="number"
+                  id="te"
+                  value="1.50"
+                  step="0.01"
+                  min="0"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="crd">
+            <div class="ct">
+              <span class="ctd" style="background: var(--ttr)"></span>Taxas
+              TikTok Shop
+            </div>
+            <div class="fld">
+              <label>Período de comissão</label>
+              <div class="iw">
+                <select id="ttp">
+                  <option value="normal">Normal (6% de taxa de serviço)</option>
+                  <option value="novo">Novo seller — 0% (60 dias)</option>
+                </select>
+              </div>
+            </div>
+            <div class="fld">
+              <label>Frete próprio <span class="ht">R$</span></label>
+              <div class="iw">
+                <span class="pfx">R$</span
+                ><input type="number" id="tf" value="0" step="0.01" min="0" />
+              </div>
+            </div>
+            <div class="fld">
+              <label
+                >Comissão Afiliados (creators) <span class="ht">%</span></label
+              >
+              <div class="iw">
+                <span class="pfx">%</span
+                ><input
+                  type="number"
+                  id="taf"
+                  value="0"
+                  step="0.1"
+                  min="0"
+                  max="30"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="crd">
+            <div class="ct">
+              <span class="ctd" style="background: #ccaa00"></span>Marketing
+            </div>
+            <div class="fld">
+              <label>TikTok Ads (ACOS) <span class="ht">%</span></label>
+              <div class="iw">
+                <span class="pfx">%</span
+                ><input
+                  type="number"
+                  id="ta"
+                  value="0"
+                  step="0.1"
+                  min="0"
+                  max="100"
+                />
+              </div>
+            </div>
+            <div class="fld">
+              <label>Promoções / Cupons <span class="ht">%</span></label>
+              <div class="iw">
+                <span class="pfx">%</span
+                ><input
+                  type="number"
+                  id="tpr"
+                  value="0"
+                  step="0.1"
+                  min="0"
+                  max="100"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="crd">
+            <div class="ct">
+              <span class="ctd" style="background: #cc2244"></span>Impostos &
+              Outros
+            </div>
+            <div class="fld">
+              <label>Imposto <span class="ht">%</span></label>
+              <div class="iw">
+                <span class="pfx">%</span
+                ><input
+                  type="number"
+                  id="ti"
+                  value="0"
+                  step="0.1"
+                  min="0"
+                  max="100"
+                />
+              </div>
+            </div>
+            <div class="fld">
+              <label>Outros custos <span class="ht">%</span></label>
+              <div class="iw">
+                <span class="pfx">%</span
+                ><input
+                  type="number"
+                  id="to"
+                  value="0"
+                  step="0.1"
+                  min="0"
+                  max="100"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="mgm sp2">
+            <div class="mr">
+              <h3>🎯 Margem de Lucro Desejada</h3>
+              <div class="mv" id="tmd">26%</div>
+            </div>
+            <input
+              type="range"
+              id="tmg"
+              min="1"
+              max="80"
+              value="26"
+              data-label-target="tmd"
+            />
+            <div class="rm">
+              <span>1%</span><span>20%</span><span>40%</span><span>60%</span
+              ><span>80%</span>
+            </div>
+          </div>
+          <div class="rc sp2">
+            <div class="rg"></div>
+            <div class="rm2">
+              <small>Preço de Venda Sugerido</small>
+              <div class="pvn" id="tpv">R$ 0,00</div>
+              <div id="tpill"></div>
+            </div>
+            <div class="bkd" id="tbd"></div>
+          </div>
+          <div class="brc sp2">
+            <div class="brl">// distribuição do preço de venda</div>
+            <div class="brt" id="tbar"></div>
+            <div class="lgd" id="tleg"></div>
+          </div>
+          <div class="wb sp2">
+            ⚠ <strong>TIKTOK SHOP 2026:</strong> Taxa de serviço de
+            <strong>6% por pedido</strong> com
+            <strong>teto de R$50 por pedido</strong>. Novos vendedores têm
+            <strong>0% nos primeiros 60 dias</strong>. Requer CNPJ ativo.
+            Comissão de afiliados é opcional e definida pelo vendedor. Repasse
+            em ~7 dias após entrega confirmada.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page pg-a" id="pgA">
+      <div class="cw">
+        <div class="ch">
+          <div>
+            <div class="cbadge">📦 Amazon · 2026</div>
+            <div class="ch1">
+              Precificação Amazon<small
+                >10–15% por categoria · Plano Individual ou Profissional</small
+              >
+            </div>
+          </div>
+          <button class="bhow" data-modal-key="amazon">ℹ Como funciona</button>
+        </div>
+        <div class="g2">
+          <div class="crd">
+            <div class="ct">
+              <span class="ctd" style="background: #2244ff"></span>Produto
+            </div>
+            <div class="fld">
+              <label>Preço de Compra <span class="ht">R$</span></label>
+              <div class="iw">
+                <span class="pfx">R$</span
+                ><input type="number" id="ap" value="25" step="0.01" min="10" />
+              </div>
+            </div>
+            <div class="fld">
+              <label>Embalagem <span class="ht">R$</span></label>
+              <div class="iw">
+                <span class="pfx">R$</span
+                ><input
+                  type="number"
+                  id="ae"
+                  value="1.50"
+                  step="0.01"
+                  min="0"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="crd">
+            <div class="ct">
+              <span class="ctd" style="background: var(--amz)"></span>Taxas
+              Amazon
+            </div>
+            <div class="fld">
+              <label>Plano</label>
+              <div class="iw">
+                <select id="aplano">
+                  <option value="prof">
+                    Profissional (grátis 1º ano / R$19/mês)
+                  </option>
+                  <option value="ind">Individual (R$2 por item vendido)</option>
+                </select>
+              </div>
+            </div>
+            <div class="fld">
+              <label>Comissão da Categoria <span class="ht">%</span></label>
+              <div class="iw">
+                <select id="acategory">
+                  <option value="tv_audio">TV/Áudio</option>
+                  <option value="pneus_rodas">Pneus e Rodas</option>
+                  <option value="comidas_bebidas">Comidas e Bebidas</option>
+                  <option value="eletrodomesticos">Eletrodomésticos</option>
+                  <option value="celulares">Celulares</option>
+                  <option value="cameras">Câmeras</option>
+                  <option value="games_consoles">Games/Consoles</option>
+                  <option value="ferramentas">Ferramentas</option>
+                  <option value="saude">Saúde</option>
+                  <option value="bebes">Bebês</option>
+                  <option value="pets">Pets</option>
+                  <option value="casa">Casa</option>
+                  <option value="esportes">Esportes</option>
+                  <option value="brinquedos">Brinquedos</option>
+                  <option value="pc">PC</option>
+                  <option value="cozinha">Cozinha</option>
+                  <option value="jardim">Jardim</option>
+                  <option value="eletronicos_portateis">
+                    Eletrônicos portáteis
+                  </option>
+                  <option value="beleza">Beleza</option>
+                  <option value="papelaria">Papelaria</option>
+                  <option value="relogios">Relógios</option>
+                  <option value="beleza_luxo">Beleza de luxo</option>
+                  <option value="malas">Malas</option>
+                  <option value="roupas">Roupas</option>
+                  <option value="calcados">Calçados</option>
+                  <option value="joias">Joias</option>
+                  <option value="livros">Livros</option>
+                  <option value="musica">Música</option>
+                  <option value="dvd">DVD</option>
+                  <option value="demais">Demais</option>
+                </select>
+              </div>
+            </div>
+            <div class="fld">
+              <label>Frete próprio <span class="ht">R$</span></label>
+              <div class="iw">
+                <span class="pfx">R$</span
+                ><input type="number" id="af" value="0" step="0.01" min="0" />
+              </div>
+            </div>
+          </div>
+          <div class="crd">
+            <div class="ct">
+              <span class="ctd" style="background: #ccaa00"></span>Marketing
+            </div>
+            <div class="fld">
+              <label>Amazon Ads (ACOS) <span class="ht">%</span></label>
+              <div class="iw">
+                <span class="pfx">%</span
+                ><input
+                  type="number"
+                  id="aads"
+                  value="0"
+                  step="0.1"
+                  min="0"
+                  max="100"
+                />
+              </div>
+            </div>
+            <div class="fld">
+              <label>Promoções / Cupons <span class="ht">%</span></label>
+              <div class="iw">
+                <span class="pfx">%</span
+                ><input
+                  type="number"
+                  id="apr"
+                  value="0"
+                  step="0.1"
+                  min="0"
+                  max="100"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="crd">
+            <div class="ct">
+              <span class="ctd" style="background: #cc2244"></span>Impostos &
+              Outros
+            </div>
+            <div class="fld">
+              <label>Imposto <span class="ht">%</span></label>
+              <div class="iw">
+                <span class="pfx">%</span
+                ><input
+                  type="number"
+                  id="aimp"
+                  value="0"
+                  step="0.1"
+                  min="0"
+                  max="100"
+                />
+              </div>
+            </div>
+            <div class="fld">
+              <label>Outros custos <span class="ht">%</span></label>
+              <div class="iw">
+                <span class="pfx">%</span
+                ><input
+                  type="number"
+                  id="aout"
+                  value="0"
+                  step="0.1"
+                  min="0"
+                  max="100"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="mgm sp2">
+            <div class="mr">
+              <h3>🎯 Margem de Lucro Desejada</h3>
+              <div class="mv" id="amd">26%</div>
+            </div>
+            <input
+              type="range"
+              id="amg"
+              min="1"
+              max="80"
+              value="26"
+              data-label-target="amd"
+            />
+            <div class="rm">
+              <span>1%</span><span>20%</span><span>40%</span><span>60%</span
+              ><span>80%</span>
+            </div>
+          </div>
+          <div class="rc sp2">
+            <div class="rg"></div>
+            <div class="rm2">
+              <small>Preço de Venda Sugerido</small>
+              <div class="pvn" id="apv">R$ 0,00</div>
+              <div id="apill"></div>
+            </div>
+            <div class="bkd" id="abd"></div>
+          </div>
+          <div class="brc sp2">
+            <div class="brl">// distribuição do preço de venda</div>
+            <div class="brt" id="abar"></div>
+            <div class="lgd" id="aleg"></div>
+          </div>
+          <div class="wb sp2">
+            ⚠ <strong>COMISSÃO AMAZON POR CATEGORIA:</strong><br />
+            <table class="itbl">
+              <tr>
+                <th>Comissão</th>
+                <th>Categorias</th>
+              </tr>
+              <tr>
+                <td>10%</td>
+                <td>TV/Áudio, Pneus, Comidas e Bebidas</td>
+              </tr>
+              <tr>
+                <td>11%</td>
+                <td>
+                  Eletrodomésticos, Celulares, Câmeras, Games/Consoles,
+                  Ferramentas
+                </td>
+              </tr>
+              <tr>
+                <td>12%</td>
+                <td>
+                  Saúde, Bebês, Pets, Casa, Esportes, Brinquedos, PC, Cozinha,
+                  Jardim
+                </td>
+              </tr>
+              <tr>
+                <td>13%</td>
+                <td>Eletrônicos portáteis, Beleza, Papelaria, Relógios</td>
+              </tr>
+              <tr>
+                <td>14%</td>
+                <td>Beleza de luxo, Malas, Roupas, Calçados, Joias</td>
+              </tr>
+              <tr>
+                <td>15%</td>
+                <td>Livros, Música, DVD, Demais categorias</td>
+              </tr>
+            </table>
+            Comissão mínima: R$1 a R$2 por item. Plano Individual: R$2/item
+            vendido. Profissional: R$19/mês (grátis no 1º ano).
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ov" id="ov">
+      <div class="mdl">
+        <div class="mx">✕</div>
+        <div id="mb"></div>
+      </div>
+    </div>
+
+    <script type="module" src="scripts/app.js"></script>
+  </body>
+</html>
