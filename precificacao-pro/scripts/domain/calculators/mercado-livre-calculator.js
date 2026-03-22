@@ -1,15 +1,15 @@
-import { getMercadoLivreFixedCost } from '../fees/mercado-livre-fees.js';
-import { buildBreakdown } from '../shared/breakdown.js';
-import { isVariableShareInvalid } from '../../core/validators.js';
+import { getMercadoLivreFixedCost } from "../fees/mercado-livre-fees.js";
+import { buildBreakdown } from "../shared/breakdown.js";
+import { isVariableShareInvalid } from "../../core/validators.js";
 
-const emptyBreakdown = () => ([
-  { label: 'Produto', value: 0 },
-  { label: 'ML (comis+fixo+frete)', value: 0 },
-  { label: 'Marketing', value: 0 },
-  { label: 'Impostos', value: 0 },
-  { label: 'Outros', value: 0 },
-  { label: 'Lucro Líquido', value: 0 },
-]);
+const emptyBreakdown = () => [
+  { label: "Produto", value: 0 },
+  { label: "ML (comis+fixo+frete)", value: 0 },
+  { label: "Marketing", value: 0 },
+  { label: "Impostos", value: 0 },
+  { label: "Outros", value: 0 },
+  { label: "Lucro Líquido", value: 0 },
+];
 
 export const calculateMercadoLivrePrice = (input) => {
   const {
@@ -25,7 +25,8 @@ export const calculateMercadoLivrePrice = (input) => {
   } = input;
 
   const marketingPercent = adsPercent + promoPercent;
-  const variableShare = commissionPercent + marketingPercent + taxPercent + otherPercent + targetMargin;
+  const variableShare =
+    commissionPercent + marketingPercent + taxPercent + otherPercent;
 
   if (isVariableShareInvalid(variableShare)) {
     return { salePrice: 0, breakdown: buildBreakdown(emptyBreakdown()) };
@@ -47,12 +48,15 @@ export const calculateMercadoLivrePrice = (input) => {
   const profitValue = salePrice * targetMargin;
 
   const breakdown = buildBreakdown([
-    { label: 'Produto', value: productCost + packagingCost },
-    { label: 'ML (comis+fixo+frete)', value: commissionValue + fixedCost + shippingCost },
-    { label: 'Marketing', value: marketingValue },
-    { label: 'Impostos', value: taxValue },
-    { label: 'Outros', value: otherValue },
-    { label: 'Lucro Líquido', value: profitValue },
+    { label: "Produto", value: productCost + packagingCost },
+    {
+      label: "ML (comis+fixo+frete)",
+      value: commissionValue + fixedCost + shippingCost,
+    },
+    { label: "Marketing", value: marketingValue },
+    { label: "Impostos", value: taxValue },
+    { label: "Outros", value: otherValue },
+    { label: "Lucro Líquido", value: profitValue },
   ]);
 
   return { salePrice, breakdown };
