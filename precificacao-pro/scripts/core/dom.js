@@ -9,7 +9,7 @@ export const getInputPercent = (id) => getInputNumber(id) / 100;
 
 export const getSelectValue = (id) => {
   const element = document.getElementById(id);
-  return element ? element.value : '';
+  return element ? element.value : "";
 };
 
 export const setText = (id, text) => {
@@ -22,8 +22,19 @@ export const setHTML = (id, html) => {
   if (element) element.innerHTML = html;
 };
 
+export const setInputValue = (id, value) => {
+  const element = document.getElementById(id);
+  if (!element) return;
+  element.value = value;
+};
+
 export const toggleClass = (selector, className, shouldAdd) => {
   document.querySelectorAll(selector).forEach((node) => {
     node.classList.toggle(className, shouldAdd);
   });
+};
+
+export const getCheckboxValue = (id) => {
+  const el = document.getElementById(id);
+  return el ? el.checked : false;
 };

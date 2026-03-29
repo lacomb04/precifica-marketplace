@@ -13,8 +13,8 @@ const INPUT_IDS = [
   "sf",
   "sm",
   "sfp",
-  "spr",
   "sa",
+  "spr",
   "si",
   "so",
   "smg",
@@ -22,11 +22,11 @@ const INPUT_IDS = [
 
 export const handleShopeeCalculation = () => {
   const input = {
+    sellerType: getSelectValue("sm"),
+    programFreeShipping: getSelectValue("sfp"),
     productCost: getInputNumber("sp"),
     packagingCost: getInputNumber("se"),
     shippingCost: getInputNumber("sf"),
-    sellerProfile: getSelectValue("sm"),
-    hasFreeShippingProgram: getSelectValue("sfp") === "sim",
     adsPercent: getInputPercent("sa"),
     promoPercent: getInputPercent("spr"),
     taxPercent: getInputPercent("si"),
@@ -42,11 +42,15 @@ export const bindShopeeInputs = () => {
   INPUT_IDS.forEach((id) => {
     const element = document.getElementById(id);
     if (!element) return;
-    const eventType = element.tagName === "SELECT" ? "change" : "input";
-    element.addEventListener(eventType, () => {
-      if (element.type === "range") syncRangeLabel(element);
+
+    const eventName = element.type === "range" ? "input" : "change";
+
+    element.addEventListener(eventName, () => {
+      if (element.type === "range") {
+        syncRangeLabel(element);
+      }
+
       handleShopeeCalculation();
     });
-    if (element.type === "range") syncRangeLabel(element);
   });
 };

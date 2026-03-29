@@ -1,6 +1,6 @@
 import { AMAZON_CATEGORIES } from "../../config/amazon-categories.js";
 
-export const getAmazonItemFee = (plan) => (plan === "ind" ? 2 : 0);
+export const getAmazonItemFee = (plan) => (plan === "ind" ? 2 : 0.66);
 
 export const getAmazonCategoryRule = (category) =>
   AMAZON_CATEGORIES[category] ?? AMAZON_CATEGORIES.demais;

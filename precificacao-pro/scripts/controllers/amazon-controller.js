@@ -53,3 +53,16 @@ export const bindAmazonInputs = () => {
     if (element.type === "range") syncRangeLabel(element);
   });
 };
+
+const updateMercadoLivreCommission = () => {
+  const category = getSelectValue("mcategory");
+  const plan = getSelectValue("mplano");
+
+  const config =
+    MERCADO_LIVRE_CATEGORIES[category] || MERCADO_LIVRE_CATEGORIES.outros;
+
+  const commission = plan === "premium" ? config.premiumRate : config.rate;
+
+  // converter pra %
+  setInputValue("mc", (commission * 100).toFixed(2));
+};

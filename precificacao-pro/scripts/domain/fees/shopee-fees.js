@@ -1,36 +1,20 @@
-export const getShopeeFee = (salePrice, sellerProfile, isFreeShipping) => {
-  let percentCommission;
-  let fixedFee;
+export const SHOPEE_BASE_COMMISSION_RATE = 0.14;
+export const SHOPEE_FREE_SHIPPING_RATE = 0.06;
 
-  if (sellerProfile === 'cnpj') {
-    if (salePrice < 80) {
-      percentCommission = 0.2;
-      fixedFee = 4;
-    } else if (salePrice < 100) {
-      percentCommission = 0.14;
-      fixedFee = 16;
-    } else if (salePrice < 200) {
-      percentCommission = 0.14;
-      fixedFee = 20;
-    } else if (salePrice < 500) {
-      percentCommission = 0.14;
-      fixedFee = 26;
-    } else {
-      percentCommission = 0.14;
-      fixedFee = 26;
-    }
-  } else if (sellerProfile === 'cpf_high_volume') {
-    percentCommission = 0.14;
-    fixedFee = 4;
-  } else {
-    percentCommission = 0.14;
-    fixedFee = 7;
-  }
+// Ajuste aqui se a Shopee mudar novamente.
+export const SHOPEE_FIXED_FEES = {
+  cnpj: 4,
+  cpf: 7,
+  cpf_high_volume: 4,
+};
 
-  const freeShippingExtra = isFreeShipping ? 0.06 : 0;
+export const getShopeeCommissionRate = ({ programFreeShipping }) => {
+  return (
+    SHOPEE_BASE_COMMISSION_RATE +
+    (programFreeShipping === "sim" ? SHOPEE_FREE_SHIPPING_RATE : 0)
+  );
+};
 
-  return {
-    percentCommission: percentCommission + freeShippingExtra,
-    fixedFee,
-  };
+export const getShopeeFixedFee = ({ sellerType }) => {
+  return SHOPEE_FIXED_FEES[sellerType] ?? SHOPEE_FIXED_FEES.cpf;
 };

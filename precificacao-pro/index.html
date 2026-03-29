@@ -314,18 +314,49 @@
               </div>
             </div>
             <div class="fld">
-              <label
-                >Tipo de anúncio / comissão <span class="ht">%</span></label
-              >
+              <label>Categoria</label>
               <div class="iw">
-                <span class="pfx">%</span
-                ><input
+                <select id="mcategory">
+                  <option value="eletronicos">Eletrônicos</option>
+                  <option value="informatica">Informática</option>
+                  <option value="moda_roupas">Moda e roupas</option>
+                  <option value="beleza">Beleza e cosméticos</option>
+                  <option value="casa_decoracao">
+                    Casa, móveis e decoração
+                  </option>
+                  <option value="autopecas">Autopeças</option>
+                  <option value="games">Games e consoles</option>
+                  <option value="petshop">Pet shop</option>
+                  <option value="supermercado">Supermercado e alimentos</option>
+                  <option value="livros">Livros</option>
+                  <option value="brinquedos">Brinquedos</option>
+                  <option value="esporte">Esporte e fitness</option>
+                  <option value="outros" selected>Outras categorias</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="fld">
+              <label>Tipo de anúncio</label>
+              <div class="iw">
+                <select id="mplano">
+                  <option value="classico">Clássico</option>
+                  <option value="premium">Premium</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="fld">
+              <label>Comissão aplicada <span class="ht">%</span></label>
+              <div class="iw">
+                <span class="pfx">%</span>
+                <input
                   type="number"
                   id="mc"
                   value="12"
                   step="0.1"
-                  min="10"
-                  max="25"
+                  min="0"
+                  readonly
                 />
               </div>
             </div>
