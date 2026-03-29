@@ -18,23 +18,7 @@ export const normalizeNumberInputs = () => {
       }
     };
 
-    el.addEventListener(
-      "beforeinput",
-      (e) => {
-        if (e.data === ",") {
-          e.preventDefault();
-          const start = el.selectionStart ?? el.value.length;
-          const end = el.selectionEnd ?? el.value.length;
-          const prefix = el.value.slice(0, start) || "0"; // evita apagar tudo ao começar com vírgula
-          const suffix = el.value.slice(end);
-          const next = `${prefix}.${suffix}`;
-          const pos = start + 1;
-          el.value = next;
-          requestAnimationFrame(() => el.setSelectionRange(pos, pos));
-        }
-      },
-      { capture: true }
-    );
+    // No beforeinput interception: allow the comma, then normalize right after to avoid clearing the field in some browsers.
 
     ["input", "change", "blur", "keyup"].forEach((evt) => {
       el.addEventListener(evt, normalize);
