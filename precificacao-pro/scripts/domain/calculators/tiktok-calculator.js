@@ -28,7 +28,7 @@ export const calculateTikTokPrice = (input) => {
   const baseCosts = productCost + packagingCost + shippingCost;
 
   // Lucro desejado em cima do custo
-  const desiredProfit = baseCosts * targetMargin;
+  const desiredProfit = productCost * targetMargin;
 
   const marketingPercent = adsPercent + promoPercent;
 
