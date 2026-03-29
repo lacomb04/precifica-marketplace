@@ -1,16 +1,19 @@
 export const getInputNumber = (id) => {
   const element = document.getElementById(id);
   if (!element) return 0;
-  const raw = (element.value || "").trim().replace(",", ".");
+  const raw = (element.value || "").trim().replace(/,/g, ".");
   const value = parseFloat(raw);
   return Number.isFinite(value) ? value : 0;
 };
 
 export const normalizeNumberInputs = () => {
   document.querySelectorAll('input[type="number"]').forEach((el) => {
+    if (!el.getAttribute("inputmode")) el.setAttribute("inputmode", "decimal");
+    if (!el.getAttribute("pattern")) el.setAttribute("pattern", "[0-9]*[.,]?[0-9]*");
+
     el.addEventListener("input", () => {
       if (el.value.includes(",")) {
-        el.value = el.value.replace(",", ".");
+        el.value = el.value.replace(/,/g, ".");
       }
     });
   });
