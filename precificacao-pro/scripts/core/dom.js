@@ -18,7 +18,22 @@ export const normalizeNumberInputs = () => {
       }
     };
 
-    // No beforeinput interception: allow the comma, then normalize right after to avoid clearing the field in some browsers.
+    // Handle comma key before the browser rejects it in some locales.
+    const interceptComma = (e) => {
+      if (e.key === ",") {
+        e.preventDefault();
+        const start = el.selectionStart ?? el.value.length;
+        const end = el.selectionEnd ?? el.value.length;
+        const prefix = el.value.slice(0, start) || "0";
+        const suffix = el.value.slice(end);
+        const next = `${prefix}.${suffix}`;
+        const cursor = start + 1;
+        el.value = next;
+        requestAnimationFrame(() => el.setSelectionRange(cursor, cursor));
+      }
+    };
+
+    el.addEventListener("keydown", interceptComma, { capture: true });
 
     ["input", "change", "blur", "keyup"].forEach((evt) => {
       el.addEventListener(evt, normalize);
