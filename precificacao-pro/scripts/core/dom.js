@@ -16,6 +16,9 @@ export const normalizeNumberInputs = () => {
       if (el.value && el.value.includes(",")) {
         el.value = el.value.replace(/,/g, ".");
       }
+      if (el.value && el.value.endsWith(".")) {
+        el.value = `${el.value}0`;
+      }
     };
 
     el.addEventListener(
@@ -27,9 +30,13 @@ export const normalizeNumberInputs = () => {
           const end = el.selectionEnd ?? el.value.length;
           const prefix = el.value.slice(0, start) || "0"; // evita apagar tudo ao começar com vírgula
           const suffix = el.value.slice(end);
-          const next = `${prefix}.${suffix}`;
+          let next = `${prefix}.${suffix}`;
+          let pos = start + 1;
+          if (next.endsWith(".")) {
+            next = `${next}0`;
+            pos += 1;
+          }
           el.value = next;
-          const pos = start + 1;
           requestAnimationFrame(() => el.setSelectionRange(pos, pos));
         }
       },
