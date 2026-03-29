@@ -77,6 +77,39 @@
   margin: 4px 0 4px;
 }
 
+.login-tabs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  margin: 12px 0 6px;
+}
+
+.tab {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  color: #fff;
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 140ms ease;
+}
+
+.tab.active {
+  border-color: rgba(255, 255, 255, 0.2);
+  background: linear-gradient(120deg, rgba(100, 117, 255, 0.35), rgba(255, 193, 7, 0.25));
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.tab-pane {
+  display: none;
+  margin-top: 10px;
+}
+
+.tab-pane.active {
+  display: block;
+}
+
 .login-sub {
   color: rgba(247, 247, 251, 0.75);
   margin: 0 0 16px;

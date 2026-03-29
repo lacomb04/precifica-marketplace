@@ -19,22 +19,42 @@
       <div class="login-card">
         <div class="login-brand">Precificação <span>PRO</span></div>
         <div class="login-title">Acesso</div>
-        <p class="login-sub">Entre com email e senha para usar as calculadoras.</p>
-        <form id="loginForm" class="login-form">
-          <label class="login-label" for="email">Email</label>
-          <input id="email" name="email" type="email" placeholder="voce@exemplo.com" required />
+        <p class="login-sub">Use o link mágico por email ou o login de teste para ver o app.</p>
 
-          <label class="login-label" for="password">Senha</label>
-          <input id="password" name="password" type="password" placeholder="••••••••" required />
+        <div class="login-tabs">
+          <button class="tab active" data-tab="magic">Magic Link</button>
+          <button class="tab" data-tab="senha">Senha (demo)</button>
+        </div>
 
-          <button type="submit" class="btn-primary">Entrar</button>
-          <div id="loginError" class="login-error" hidden></div>
-          <div id="loginSuccess" class="login-success" hidden>
-            Login ok! Redirecionando…
+        <div id="pane-magic" class="tab-pane active">
+          <form id="magicForm" class="login-form">
+            <label class="login-label" for="magicEmail">Email</label>
+            <input id="magicEmail" name="magicEmail" type="email" placeholder="voce@exemplo.com" required />
+
+            <button type="submit" class="btn-primary">Enviar magic link</button>
+            <div id="magicInfo" class="login-success" hidden></div>
+            <div id="magicError" class="login-error" hidden></div>
+          </form>
+          <div class="login-hint">Link expira em 10 minutos. Se perder, peça outro aqui.</div>
+        </div>
+
+        <div id="pane-senha" class="tab-pane">
+          <form id="loginForm" class="login-form">
+            <label class="login-label" for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="voce@exemplo.com" />
+
+            <label class="login-label" for="password">Senha</label>
+            <input id="password" name="password" type="password" placeholder="••••••••" />
+
+            <button type="submit" class="btn-primary">Entrar</button>
+            <div id="loginError" class="login-error" hidden></div>
+            <div id="loginSuccess" class="login-success" hidden>
+              Login ok! Redirecionando…
+            </div>
+          </form>
+          <div class="login-hint">
+            Admin de teste: <strong>admin@demo.com</strong> / <strong>demo123</strong>
           </div>
-        </form>
-        <div class="login-hint">
-          Admin de teste: <strong>admin@demo.com</strong> / <strong>demo123</strong>
         </div>
       </div>
     </div>

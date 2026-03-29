@@ -1,7 +1,8 @@
 export const getInputNumber = (id) => {
   const element = document.getElementById(id);
   if (!element) return 0;
-  const value = parseFloat(element.value);
+  const raw = (element.value || '').trim().replace(',', '.');
+  const value = parseFloat(raw);
   return Number.isFinite(value) ? value : 0;
 };
 

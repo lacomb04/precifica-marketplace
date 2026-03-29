@@ -8,6 +8,15 @@ const show = (el, visible) => {
   el.hidden = !visible;
 };
 
+const switchTab = (key) => {
+  document.querySelectorAll('.tab').forEach((tab) => {
+    tab.classList.toggle('active', tab.dataset.tab === key);
+  });
+  document.querySelectorAll('.tab-pane').forEach((pane) => {
+    pane.classList.toggle('active', pane.id === `pane-${key}`);
+  });
+};
+
 const handleLogin = (event) => {
   event.preventDefault();
   const emailInput = document.getElementById('email');
@@ -41,14 +50,60 @@ const handleLogin = (event) => {
   errorBox.textContent = 'Credenciais inválidas para o ambiente de teste.';
 };
 
-const wireForm = () => {
-  const form = document.getElementById('loginForm');
-  form?.addEventListener('submit', handleLogin);
+const handleMagicLink = async (event) => {
+  event.preventDefault();
+  const emailInput = document.getElementById('magicEmail');
+  const infoBox = document.getElementById('magicInfo');
+  const errorBox = document.getElementById('magicError');
+
+  const email = (emailInput?.value || '').trim().toLowerCase();
+
+  show(infoBox, false);
+  show(errorBox, false);
+
+  if (!email) {
+    show(errorBox, true);
+    errorBox.textContent = 'Informe um email válido.';
+    return;
+  }
+
+  try {
+    // Placeholder: quando integrar, chame sua API
+    // await fetch('/api/auth/request-magic-link', { method: 'POST', body: JSON.stringify({ email }) });
+    show(infoBox, true);
+    infoBox.textContent = 'Se este email existir, enviamos um link válido por 10 minutos.';
+  } catch (e) {
+    show(errorBox, true);
+    errorBox.textContent = 'Não foi possível enviar agora. Tente novamente.';
+  }
+};
+
+const consumeToken = () => {
+  const params = new URLSearchParams(window.location.search);
+  const token = params.get('token');
+  if (!token) return;
+
+  // Placeholder: ao integrar, valide o token no backend.
+  setSession({ email: 'magic-link-user', provider: 'magic_link', token });
+  window.location.href = 'index.html';
+};
+
+const wireUI = () => {
+  document.querySelectorAll('.tab').forEach((tab) => {
+    tab.addEventListener('click', () => switchTab(tab.dataset.tab));
+  });
+
+  const formLogin = document.getElementById('loginForm');
+  formLogin?.addEventListener('submit', handleLogin);
+
+  const formMagic = document.getElementById('magicForm');
+  formMagic?.addEventListener('submit', handleMagicLink);
 };
 
 const init = () => {
   clearSession();
-  wireForm();
+  wireUI();
+  consumeToken();
 };
 
 document.addEventListener('DOMContentLoaded', init);
