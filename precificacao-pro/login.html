@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login · Precificação PRO</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800;900&family=Barlow+Condensed:wght@700;800;900&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles/base.css" />
+    <link rel="stylesheet" href="styles/layout.css" />
+    <link rel="stylesheet" href="styles/components.css" />
+    <link rel="stylesheet" href="styles/themes.css" />
+    <link rel="stylesheet" href="styles/pages/login.css" />
+  </head>
+  <body class="login-body">
+    <div class="login-shell">
+      <div class="login-card">
+        <div class="login-brand">Precificação <span>PRO</span></div>
+        <div class="login-title">Acesso</div>
+        <p class="login-sub">Entre com email e senha para usar as calculadoras.</p>
+        <form id="loginForm" class="login-form">
+          <label class="login-label" for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="voce@exemplo.com" required />
+
+          <label class="login-label" for="password">Senha</label>
+          <input id="password" name="password" type="password" placeholder="••••••••" required />
+
+          <button type="submit" class="btn-primary">Entrar</button>
+          <div id="loginError" class="login-error" hidden></div>
+          <div id="loginSuccess" class="login-success" hidden>
+            Login ok! Redirecionando…
+          </div>
+        </form>
+        <div class="login-hint">
+          Admin de teste: <strong>admin@demo.com</strong> / <strong>demo123</strong>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="scripts/auth/login.js"></script>
+  </body>
+</html>

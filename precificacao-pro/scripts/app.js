@@ -4,6 +4,7 @@ import { bindShopeeInputs, handleShopeeCalculation } from './controllers/shopee-
 import { bindMercadoLivreInputs, handleMercadoLivreCalculation } from './controllers/mercado-livre-controller.js';
 import { bindTikTokInputs, handleTikTokCalculation } from './controllers/tiktok-controller.js';
 import { bindAmazonInputs, handleAmazonCalculation } from './controllers/amazon-controller.js';
+import { requireSession, clearSession, getSession } from './auth/auth.js';
 
 const MARKETPLACE_KEYS = {
   s: 'shopee',
@@ -33,8 +34,14 @@ const runInitialCalculations = () => {
 const bindNavigation = () => {
   const brand = document.querySelector('.brand');
   const backButton = document.getElementById('navBack');
+  const logoutButton = document.getElementById('navLogout');
+
   brand?.addEventListener('click', showHome);
   backButton?.addEventListener('click', showHome);
+  logoutButton?.addEventListener('click', () => {
+    clearSession();
+    window.location.href = 'login.html';
+  });
 
   document.querySelectorAll('[data-target-page]').forEach((card) => {
     card.addEventListener('click', () => {
@@ -68,6 +75,7 @@ const bindRangeLabels = () => {
 };
 
 const boot = () => {
+  requireSession();
   bindNavigation();
   calculatorBindings.forEach((bind) => bind());
   bindModalTriggers();
