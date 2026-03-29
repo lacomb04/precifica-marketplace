@@ -9,12 +9,17 @@ export const getInputNumber = (id) => {
 export const normalizeNumberInputs = () => {
   document.querySelectorAll('input[type="number"]').forEach((el) => {
     if (!el.getAttribute("inputmode")) el.setAttribute("inputmode", "decimal");
-    if (!el.getAttribute("pattern")) el.setAttribute("pattern", "[0-9]*[.,]?[0-9]*");
+    if (!el.getAttribute("pattern"))
+      el.setAttribute("pattern", "[0-9]*[.,]?[0-9]*");
 
-    el.addEventListener("input", () => {
-      if (el.value.includes(",")) {
+    const normalize = () => {
+      if (el.value && el.value.includes(",")) {
         el.value = el.value.replace(/,/g, ".");
       }
+    };
+
+    ["input", "change", "blur", "keyup"].forEach((evt) => {
+      el.addEventListener(evt, normalize);
     });
   });
 };

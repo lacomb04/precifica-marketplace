@@ -26,7 +26,7 @@
 }
 
 body {
-  font-family: 'Barlow', sans-serif;
+  font-family: "Barlow", sans-serif;
   background: var(--bg);
   color: var(--text);
   min-height: 100vh;
@@ -41,12 +41,20 @@ textarea {
 }
 
 body::before {
-  content: '';
+  content: "";
   position: fixed;
   inset: 0;
   background:
-    radial-gradient(ellipse 80% 60% at 10% -10%, rgba(0, 80, 220, 0.14) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 50% at 90% 100%, rgba(0, 40, 160, 0.1) 0%, transparent 60%);
+    radial-gradient(
+      ellipse 80% 60% at 10% -10%,
+      rgba(0, 80, 220, 0.14) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 60% 50% at 90% 100%,
+      rgba(0, 40, 160, 0.1) 0%,
+      transparent 60%
+    );
   pointer-events: none;
   z-index: 0;
 }
