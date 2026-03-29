@@ -18,6 +18,22 @@ export const normalizeNumberInputs = () => {
       }
     };
 
+    el.addEventListener(
+      "beforeinput",
+      (e) => {
+        if (e.data === ",") {
+          e.preventDefault();
+          const start = el.selectionStart ?? el.value.length;
+          const end = el.selectionEnd ?? el.value.length;
+          const next = `${el.value.slice(0, start)}.${el.value.slice(end)}`;
+          el.value = next;
+          const pos = start + 1;
+          requestAnimationFrame(() => el.setSelectionRange(pos, pos));
+        }
+      },
+      { capture: true }
+    );
+
     ["input", "change", "blur", "keyup"].forEach((evt) => {
       el.addEventListener(evt, normalize);
     });
