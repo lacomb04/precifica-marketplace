@@ -25,7 +25,9 @@ export const normalizeNumberInputs = () => {
           e.preventDefault();
           const start = el.selectionStart ?? el.value.length;
           const end = el.selectionEnd ?? el.value.length;
-          const next = `${el.value.slice(0, start)}.${el.value.slice(end)}`;
+          const prefix = el.value.slice(0, start) || "0"; // evita apagar tudo ao começar com vírgula
+          const suffix = el.value.slice(end);
+          const next = `${prefix}.${suffix}`;
           el.value = next;
           const pos = start + 1;
           requestAnimationFrame(() => el.setSelectionRange(pos, pos));
