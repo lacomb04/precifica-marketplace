@@ -8,32 +8,21 @@ export const getInputNumber = (id) => {
 
 export const normalizeNumberInputs = () => {
   document.querySelectorAll('input[type="number"]').forEach((el) => {
+    // Convert to text to avoid locale-dependent blocking of commas while keeping decimal keypad via inputmode.
+    if (!el.dataset.numericPatched) {
+      el.dataset.numericPatched = "true";
+      el.setAttribute("data-original-type", el.getAttribute("type") || "number");
+      el.setAttribute("type", "text");
+    }
+
     if (!el.getAttribute("inputmode")) el.setAttribute("inputmode", "decimal");
-    if (!el.getAttribute("pattern"))
-      el.setAttribute("pattern", "[0-9]*[.,]?[0-9]*");
+    if (!el.getAttribute("pattern")) el.setAttribute("pattern", "[0-9]*[.,]?[0-9]*");
 
     const normalize = () => {
       if (el.value && el.value.includes(",")) {
         el.value = el.value.replace(/,/g, ".");
       }
     };
-
-    // Handle comma key before the browser rejects it in some locales.
-    const interceptComma = (e) => {
-      if (e.key === ",") {
-        e.preventDefault();
-        const start = el.selectionStart ?? el.value.length;
-        const end = el.selectionEnd ?? el.value.length;
-        const prefix = el.value.slice(0, start) || "0";
-        const suffix = el.value.slice(end);
-        const next = `${prefix}.${suffix}`;
-        const cursor = start + 1;
-        el.value = next;
-        requestAnimationFrame(() => el.setSelectionRange(cursor, cursor));
-      }
-    };
-
-    el.addEventListener("keydown", interceptComma, { capture: true });
 
     ["input", "change", "blur", "keyup"].forEach((evt) => {
       el.addEventListener(evt, normalize);
