@@ -48,7 +48,7 @@ export const calculateShopeePrice = (input) => {
   }
 
   const baseCosts = productCost + packagingCost + shippingCost + fixedFee;
-  const desiredProfit = baseCosts * targetMargin;
+  const desiredProfit = productCost * targetMargin;
 
   const salePrice = (baseCosts + desiredProfit) / (1 - variableShare);
 
