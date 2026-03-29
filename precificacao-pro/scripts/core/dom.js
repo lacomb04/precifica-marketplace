@@ -1,9 +1,19 @@
 export const getInputNumber = (id) => {
   const element = document.getElementById(id);
   if (!element) return 0;
-  const raw = (element.value || '').trim().replace(',', '.');
+  const raw = (element.value || "").trim().replace(",", ".");
   const value = parseFloat(raw);
   return Number.isFinite(value) ? value : 0;
+};
+
+export const normalizeNumberInputs = () => {
+  document.querySelectorAll('input[type="number"]').forEach((el) => {
+    el.addEventListener("input", () => {
+      if (el.value.includes(",")) {
+        el.value = el.value.replace(",", ".");
+      }
+    });
+  });
 };
 
 export const getInputPercent = (id) => getInputNumber(id) / 100;

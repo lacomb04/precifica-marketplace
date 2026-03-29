@@ -33,6 +33,13 @@ body {
   overflow-x: hidden;
 }
 
+input,
+select,
+button,
+textarea {
+  font-size: 16px; /* evita zoom em mobile ao focar */
+}
+
 body::before {
   content: '';
   position: fixed;

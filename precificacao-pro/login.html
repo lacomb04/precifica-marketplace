@@ -2,7 +2,7 @@
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no" />
     <title>Login · Precificação PRO</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800;900&family=Barlow+Condensed:wght@700;800;900&family=JetBrains+Mono:wght@400;500&display=swap"
@@ -19,7 +19,9 @@
       <div class="login-card">
         <div class="login-brand">Precificação <span>PRO</span></div>
         <div class="login-title">Acesso</div>
-        <p class="login-sub">Use o link mágico por email ou o login de teste para ver o app.</p>
+        <p class="login-sub">
+          Use o link mágico por email ou o login de teste para ver o app.
+        </p>
 
         <div class="login-tabs">
           <button class="tab active" data-tab="magic">Magic Link</button>
@@ -29,22 +31,40 @@
         <div id="pane-magic" class="tab-pane active">
           <form id="magicForm" class="login-form">
             <label class="login-label" for="magicEmail">Email</label>
-            <input id="magicEmail" name="magicEmail" type="email" placeholder="voce@exemplo.com" required />
+            <input
+              id="magicEmail"
+              name="magicEmail"
+              type="email"
+              placeholder="voce@exemplo.com"
+              required
+            />
 
             <button type="submit" class="btn-primary">Enviar magic link</button>
             <div id="magicInfo" class="login-success" hidden></div>
             <div id="magicError" class="login-error" hidden></div>
           </form>
-          <div class="login-hint">Link expira em 10 minutos. Se perder, peça outro aqui.</div>
+          <div class="login-hint">
+            Link expira em 10 minutos. Se perder, peça outro aqui.
+          </div>
         </div>
 
         <div id="pane-senha" class="tab-pane">
           <form id="loginForm" class="login-form">
             <label class="login-label" for="email">Email</label>
-            <input id="email" name="email" type="email" placeholder="voce@exemplo.com" />
+            <input
+              id="email"
+              name="email"
+              type="email"
+              placeholder="voce@exemplo.com"
+            />
 
             <label class="login-label" for="password">Senha</label>
-            <input id="password" name="password" type="password" placeholder="••••••••" />
+            <input
+              id="password"
+              name="password"
+              type="password"
+              placeholder="••••••••"
+            />
 
             <button type="submit" class="btn-primary">Entrar</button>
             <div id="loginError" class="login-error" hidden></div>
@@ -53,7 +73,8 @@
             </div>
           </form>
           <div class="login-hint">
-            Admin de teste: <strong>admin@demo.com</strong> / <strong>demo123</strong>
+            Admin de teste: <strong>admin@demo.com</strong> /
+            <strong>demo123</strong>
           </div>
         </div>
       </div>

@@ -1,7 +1,12 @@
 .login-body {
   position: relative;
   overflow: hidden;
-  background: radial-gradient(circle at 20% 20%, rgba(255, 204, 0, 0.14), transparent 30%),
+  background:
+    radial-gradient(
+      circle at 20% 20%,
+      rgba(255, 204, 0, 0.14),
+      transparent 30%
+    ),
     radial-gradient(circle at 80% 0%, rgba(34, 68, 255, 0.18), transparent 38%),
     #0b0d14;
   color: #f7f7fb;
@@ -9,7 +14,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: "Barlow", system-ui, -apple-system, sans-serif;
+  font-family:
+    "Barlow",
+    system-ui,
+    -apple-system,
+    sans-serif;
 }
 
 .login-body::before,
@@ -45,7 +54,12 @@
 }
 
 .login-card {
-  background: linear-gradient(160deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02)),
+  background:
+    linear-gradient(
+      160deg,
+      rgba(255, 255, 255, 0.04),
+      rgba(255, 255, 255, 0.02)
+    ),
     linear-gradient(180deg, #171b26, #0f1117 52%, #0a0c12);
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 18px;
@@ -97,7 +111,11 @@
 
 .tab.active {
   border-color: rgba(255, 255, 255, 0.2);
-  background: linear-gradient(120deg, rgba(100, 117, 255, 0.35), rgba(255, 193, 7, 0.25));
+  background: linear-gradient(
+    120deg,
+    rgba(100, 117, 255, 0.35),
+    rgba(255, 193, 7, 0.25)
+  );
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
@@ -136,7 +154,10 @@
   color: #fff;
   font-size: 16px; /* evita zoom automático em mobile */
   outline: none;
-  transition: border-color 160ms ease, background 160ms ease, transform 120ms ease;
+  transition:
+    border-color 160ms ease,
+    background 160ms ease,
+    transform 120ms ease;
 }
 
 .login-form input:focus {
@@ -156,7 +177,10 @@
   color: #fff;
   font-weight: 700;
   cursor: pointer;
-  transition: transform 150ms ease, box-shadow 150ms ease, background-position 260ms ease;
+  transition:
+    transform 150ms ease,
+    box-shadow 150ms ease,
+    background-position 260ms ease;
 }
 
 .btn-primary:hover {
