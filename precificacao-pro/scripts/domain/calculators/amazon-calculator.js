@@ -49,7 +49,7 @@ export const calculateAmazonPrice = (input) => {
       productCost + packagingCost + shippingCost + itemFee + extraMinCommission;
 
     // Lucro desejado sobre custo, não sobre venda
-    const desiredProfit = baseCosts * targetMargin;
+    const desiredProfit = productCost * targetMargin;
 
     salePrice = (baseCosts + desiredProfit) / (1 - variableShare);
 
@@ -78,7 +78,7 @@ export const calculateAmazonPrice = (input) => {
   const otherValue = salePrice * otherPercent;
 
   // Lucro líquido sobre custo
-  const profitValue = finalBaseCosts * targetMargin;
+  const profitValue = productCost * targetMargin;
 
   const breakdown = buildBreakdown([
     { label: "Produto", value: productCost + packagingCost },

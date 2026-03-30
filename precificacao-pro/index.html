@@ -38,6 +38,16 @@
           garantida, sem surpresas.
         </p>
         <div class="mpg">
+          <div class="mpc mpc-c" data-target-page="comparador">
+            <div class="lbox"><span class="cmp-icon">⚖</span></div>
+            <div class="mpname">Comparador</div>
+            <div class="mprate">1 input → 4 cálculos</div>
+            <div class="mpdesc">
+              Informe uma vez seus custos e veja lado a lado qual marketplace
+              rende mais lucro líquido.
+            </div>
+            <div class="mparrow">↗</div>
+          </div>
           <div class="mpc mpc-s" data-target-page="shopee">
             <div class="lbox">
               <img src="assets/logos/shopee.svg" alt="Shopee" />
@@ -84,6 +94,291 @@
             </div>
             <div class="mparrow">↗</div>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page pg-c" id="pgC">
+      <div class="cw">
+        <div class="ch">
+          <div>
+            <div class="cbadge">⚖ Comparador · 2026</div>
+            <div class="ch1">
+              Comparar Marketplaces
+              <small>Repita os mesmos custos e veja onde sobra mais dinheiro.</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="g2">
+          <div class="crd">
+            <div class="ct">
+              <span class="ctd" style="background: #2244ff"></span>Custos base
+            </div>
+            <div class="fld">
+              <label>Preço de Compra <span class="ht">R$</span></label>
+              <div class="iw">
+                <span class="pfx">R$</span>
+                <input
+                  type="number"
+                  inputmode="decimal"
+                  id="cp"
+                  value="25"
+                  step="0.01"
+                  min="0"
+                />
+              </div>
+            </div>
+            <div class="fld">
+              <label>Embalagem <span class="ht">R$</span></label>
+              <div class="iw">
+                <span class="pfx">R$</span>
+                <input
+                  type="number"
+                  inputmode="decimal"
+                  id="ce"
+                  value="1.5"
+                  step="0.01"
+                  min="0"
+                />
+              </div>
+            </div>
+            <div class="fld">
+              <label>Frete ao cliente <span class="ht">R$</span></label>
+              <div class="iw">
+                <span class="pfx">R$</span>
+                <input
+                  type="number"
+                  inputmode="decimal"
+                  id="cf"
+                  value="0"
+                  step="0.01"
+                  min="0"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="crd">
+            <div class="ct">
+              <span class="ctd" style="background: #ccaa00"></span>Marketing e impostos (para todos)
+            </div>
+            <div class="fld">
+              <label>Ads (ACOS médio) <span class="ht">%</span></label>
+              <div class="iw">
+                <span class="pfx">%</span>
+                <input
+                  type="number"
+                  inputmode="decimal"
+                  id="ca"
+                  value="0"
+                  step="0.1"
+                  min="0"
+                  max="100"
+                />
+              </div>
+            </div>
+            <div class="fld">
+              <label>Cupons / Promoções <span class="ht">%</span></label>
+              <div class="iw">
+                <span class="pfx">%</span>
+                <input
+                  type="number"
+                  inputmode="decimal"
+                  id="cpr"
+                  value="0"
+                  step="0.1"
+                  min="0"
+                  max="100"
+                />
+              </div>
+            </div>
+            <div class="fld">
+              <label>Imposto <span class="ht">%</span></label>
+              <div class="iw">
+                <span class="pfx">%</span>
+                <input
+                  type="number"
+                  inputmode="decimal"
+                  id="ci"
+                  value="0"
+                  step="0.1"
+                  min="0"
+                  max="100"
+                />
+              </div>
+            </div>
+            <div class="fld">
+              <label>Outros custos <span class="ht">%</span></label>
+              <div class="iw">
+                <span class="pfx">%</span>
+                <input
+                  type="number"
+                  inputmode="decimal"
+                  id="co"
+                  value="0"
+                  step="0.1"
+                  min="0"
+                  max="100"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="crd">
+            <div class="ct">
+              <span class="ctd" style="background: var(--shopee)"></span>Shopee — parâmetros
+            </div>
+            <div class="fld">
+              <label>Tipo de vendedor</label>
+              <div class="iw">
+                <select id="csm">
+                  <option value="cnpj">CNPJ</option>
+                  <option value="cpf">CPF comum</option>
+                  <option value="cpf_high_volume">CPF alto volume</option>
+                </select>
+              </div>
+            </div>
+            <div class="fld">
+              <label>Programa Frete Grátis</label>
+              <div class="iw">
+                <select id="csfp">
+                  <option value="nao">Não</option>
+                  <option value="sim">Sim (+6%)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="crd">
+            <div class="ct">
+              <span class="ctd" style="background: var(--meli)"></span>Mercado Livre — parâmetros
+            </div>
+            <div class="fld">
+              <label>Categoria</label>
+              <div class="iw">
+                <select id="cmcategory">
+                  <option value="eletronicos">Eletrônicos</option>
+                  <option value="informatica">Informática</option>
+                  <option value="moda_roupas">Moda e roupas</option>
+                  <option value="beleza">Beleza e cosméticos</option>
+                  <option value="casa_decoracao">Casa, móveis e decoração</option>
+                  <option value="autopecas">Autopeças</option>
+                  <option value="games">Games e consoles</option>
+                  <option value="petshop">Pet shop</option>
+                  <option value="supermercado">Supermercado e alimentos</option>
+                  <option value="livros">Livros</option>
+                  <option value="brinquedos">Brinquedos</option>
+                  <option value="esporte">Esporte e fitness</option>
+                  <option value="outros" selected>Outras categorias</option>
+                </select>
+              </div>
+            </div>
+            <div class="fld">
+              <label>Tipo de anúncio</label>
+              <div class="iw">
+                <select id="cmplano">
+                  <option value="classico">Clássico</option>
+                  <option value="premium">Premium</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="crd">
+            <div class="ct">
+              <span class="ctd" style="background: var(--ttr)"></span>TikTok Shop — parâmetros
+            </div>
+            <div class="fld">
+              <label>Período</label>
+              <div class="iw">
+                <select id="cttipo">
+                  <option value="normal">Normal (6%)</option>
+                  <option value="novo">Novo seller — 0% (60 dias)</option>
+                </select>
+              </div>
+            </div>
+            <div class="fld">
+              <label>Comissão afiliados <span class="ht">%</span></label>
+              <div class="iw">
+                <span class="pfx">%</span>
+                <input
+                  type="number"
+                  inputmode="decimal"
+                  id="ctaf"
+                  value="0"
+                  step="0.1"
+                  min="0"
+                  max="30"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="crd">
+            <div class="ct">
+              <span class="ctd" style="background: var(--amz)"></span>Amazon — parâmetros
+            </div>
+            <div class="fld">
+              <label>Plano</label>
+              <div class="iw">
+                <select id="caplano">
+                  <option value="prof">Profissional</option>
+                  <option value="ind">Individual</option>
+                </select>
+              </div>
+            </div>
+            <div class="fld">
+              <label>Categoria</label>
+              <div class="iw">
+                <select id="cacategory">
+                  <option value="eletronicos_portateis">Eletrônicos portáteis</option>
+                  <option value="pc">Computadores e informática</option>
+                  <option value="games_consoles">Games e consoles</option>
+                  <option value="tv_audio">TV, áudio e home theater</option>
+                  <option value="celulares">Celulares</option>
+                  <option value="cameras">Câmeras e acessórios</option>
+                  <option value="papelaria">Papelaria e escritório</option>
+                  <option value="beleza">Beleza</option>
+                  <option value="beleza_luxo">Beleza luxo</option>
+                  <option value="saude">Saúde</option>
+                  <option value="bebes">Bebês</option>
+                  <option value="pets">Pet shop</option>
+                  <option value="casa">Casa e utilidades</option>
+                  <option value="cozinha">Cozinha</option>
+                  <option value="esportes">Esporte e lazer</option>
+                  <option value="brinquedos">Brinquedos</option>
+                  <option value="relogios">Relógios</option>
+                  <option value="roupas">Roupas</option>
+                  <option value="calcados">Calçados</option>
+                  <option value="joias">Joias</option>
+                  <option value="livros">Livros</option>
+                  <option value="musica">Música</option>
+                  <option value="dvd">DVD</option>
+                  <option value="demais" selected>Demais categorias</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="mgm sp2">
+            <div class="mr">
+              <h3>🎯 Margem de lucro alvo</h3>
+              <div class="mv" id="cmd">26%</div>
+            </div>
+            <input type="range" id="cmg" min="1" max="80" value="26" data-label-target="cmd" />
+            <div class="rm">
+              <span>1%</span><span>20%</span><span>40%</span><span>60%</span><span>80%</span>
+            </div>
+            <small class="cmp-hint">A margem é aplicada em cima do custo do produto em todos os marketplaces.</small>
+          </div>
+        </div>
+
+        <div class="cmp-panel sp2">
+          <div class="cmp-title">Ranking por lucro líquido</div>
+          <div class="cmp-lead" id="cmpBest">Preencha os campos para ver o ranking.</div>
+          <div class="cmp-grid" id="cmpResults"></div>
+          <div class="cmp-note">Baseado no lucro líquido por unidade e margem sobre a venda. Em empate de lucro, vence o menor preço sugerido.</div>
         </div>
       </div>
     </div>

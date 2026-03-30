@@ -1,5 +1,6 @@
 export const MARKETPLACE_PAGE_IDS = {
   home: 'pgH',
+  comparador: 'pgC',
   shopee: 'pgS',
   mercadoLivre: 'pgM',
   tiktok: 'pgT',

@@ -16,6 +16,10 @@ import {
   bindAmazonInputs,
   handleAmazonCalculation,
 } from "./controllers/amazon-controller.js";
+import {
+  bindComparisonInputs,
+  handleComparisonCalculation,
+} from "./controllers/comparison-controller.js";
 import { requireSession, clearSession, getSession } from "./auth/auth.js";
 import { normalizeNumberInputs } from "./core/dom.js";
 
@@ -31,6 +35,7 @@ const INITIAL_CALCULATORS = {
   mercadoLivre: handleMercadoLivreCalculation,
   tiktok: handleTikTokCalculation,
   amazon: handleAmazonCalculation,
+  comparador: handleComparisonCalculation,
 };
 
 const calculatorBindings = [
@@ -38,6 +43,7 @@ const calculatorBindings = [
   bindMercadoLivreInputs,
   bindTikTokInputs,
   bindAmazonInputs,
+  bindComparisonInputs,
 ];
 
 const runInitialCalculations = () => {
