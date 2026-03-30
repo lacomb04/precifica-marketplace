@@ -86,7 +86,7 @@ export const calculateMercadoLivrePrice = ({
       };
     }
 
-    const desiredProfit = fixedBaseCosts * targetMargin;
+    const desiredProfit = productCost * targetMargin;
 
     const nextSalePrice =
       (fixedBaseCosts +
