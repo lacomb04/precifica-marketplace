@@ -121,7 +121,7 @@
 }
 
 .cmp-logo img {
-  max-width: 100%;
+  max-width: 200%;
   max-height: 100%;
   object-fit: contain;
 }
