@@ -91,7 +91,10 @@
                   <img src="assets/logos/amazon.webp" alt="Amazon" />
                 </div>
                 <div class="cmp-logo">
-                  <img src="assets/logos/mercado-livre.svg" alt="Mercado Livre" />
+                  <img
+                    src="assets/logos/mercado-livre.svg"
+                    alt="Mercado Livre"
+                  />
                 </div>
                 <div class="cmp-logo">
                   <img src="assets/logos/shopee.svg" alt="Shopee" />
@@ -124,7 +127,9 @@
             <div class="cbadge">⚖ Comparador · 2026</div>
             <div class="ch1">
               Comparar Marketplaces
-              <small>Repita os mesmos custos e veja onde sobra mais dinheiro.</small>
+              <small
+                >Repita os mesmos custos e veja onde sobra mais dinheiro.</small
+              >
             </div>
           </div>
         </div>
@@ -180,7 +185,8 @@
 
           <div class="crd">
             <div class="ct">
-              <span class="ctd" style="background: #ccaa00"></span>Marketing e impostos (para todos)
+              <span class="ctd" style="background: #ccaa00"></span>Marketing e
+              impostos (para todos)
             </div>
             <div class="fld">
               <label>Ads (ACOS médio) <span class="ht">%</span></label>
@@ -246,7 +252,8 @@
 
           <div class="crd">
             <div class="ct">
-              <span class="ctd" style="background: var(--shopee)"></span>Shopee — parâmetros
+              <span class="ctd" style="background: var(--shopee)"></span>Shopee
+              — parâmetros
             </div>
             <div class="fld">
               <label>Tipo de vendedor</label>
@@ -254,16 +261,6 @@
                 <select id="csm">
                   <option value="cnpj">CNPJ</option>
                   <option value="cpf">CPF comum</option>
-                  <option value="cpf_high_volume">CPF alto volume</option>
-                </select>
-              </div>
-            </div>
-            <div class="fld">
-              <label>Programa Frete Grátis</label>
-              <div class="iw">
-                <select id="csfp">
-                  <option value="nao">Não</option>
-                  <option value="sim">Sim (+6%)</option>
                 </select>
               </div>
             </div>
@@ -271,7 +268,8 @@
 
           <div class="crd">
             <div class="ct">
-              <span class="ctd" style="background: var(--meli)"></span>Mercado Livre — parâmetros
+              <span class="ctd" style="background: var(--meli)"></span>Mercado
+              Livre — parâmetros
             </div>
             <div class="fld">
               <label>Categoria</label>
@@ -281,7 +279,9 @@
                   <option value="informatica">Informática</option>
                   <option value="moda_roupas">Moda e roupas</option>
                   <option value="beleza">Beleza e cosméticos</option>
-                  <option value="casa_decoracao">Casa, móveis e decoração</option>
+                  <option value="casa_decoracao">
+                    Casa, móveis e decoração
+                  </option>
                   <option value="autopecas">Autopeças</option>
                   <option value="games">Games e consoles</option>
                   <option value="petshop">Pet shop</option>
@@ -306,7 +306,8 @@
 
           <div class="crd">
             <div class="ct">
-              <span class="ctd" style="background: var(--ttr)"></span>TikTok Shop — parâmetros
+              <span class="ctd" style="background: var(--ttr)"></span>TikTok
+              Shop — parâmetros
             </div>
             <div class="fld">
               <label>Período</label>
@@ -336,7 +337,8 @@
 
           <div class="crd">
             <div class="ct">
-              <span class="ctd" style="background: var(--amz)"></span>Amazon — parâmetros
+              <span class="ctd" style="background: var(--amz)"></span>Amazon —
+              parâmetros
             </div>
             <div class="fld">
               <label>Plano</label>
@@ -351,7 +353,9 @@
               <label>Categoria</label>
               <div class="iw">
                 <select id="cacategory">
-                  <option value="eletronicos_portateis">Eletrônicos portáteis</option>
+                  <option value="eletronicos_portateis">
+                    Eletrônicos portáteis
+                  </option>
                   <option value="pc">Computadores e informática</option>
                   <option value="games_consoles">Games e consoles</option>
                   <option value="tv_audio">TV, áudio e home theater</option>
@@ -385,19 +389,35 @@
               <h3>🎯 Margem de lucro alvo</h3>
               <div class="mv" id="cmd">26%</div>
             </div>
-            <input type="range" id="cmg" min="1" max="80" value="26" data-label-target="cmd" />
+            <input
+              type="range"
+              id="cmg"
+              min="1"
+              max="80"
+              value="26"
+              data-label-target="cmd"
+            />
             <div class="rm">
-              <span>1%</span><span>20%</span><span>40%</span><span>60%</span><span>80%</span>
+              <span>1%</span><span>20%</span><span>40%</span><span>60%</span
+              ><span>80%</span>
             </div>
-            <small class="cmp-hint">A margem é aplicada em cima do custo do produto em todos os marketplaces.</small>
+            <small class="cmp-hint"
+              >A margem é aplicada em cima do custo do produto em todos os
+              marketplaces.</small
+            >
           </div>
         </div>
 
         <div class="cmp-panel sp2">
           <div class="cmp-title">Ranking por lucro líquido</div>
-          <div class="cmp-lead" id="cmpBest">Preencha os campos para ver o ranking.</div>
+          <div class="cmp-lead" id="cmpBest">
+            Preencha os campos para ver o ranking.
+          </div>
           <div class="cmp-grid" id="cmpResults"></div>
-          <div class="cmp-note">Baseado no lucro líquido por unidade e margem sobre a venda. Em empate de lucro, vence o menor preço sugerido.</div>
+          <div class="cmp-note">
+            Baseado no lucro líquido por unidade e margem sobre a venda. Em
+            empate de lucro, vence o menor preço sugerido.
+          </div>
         </div>
       </div>
     </div>
@@ -448,20 +468,6 @@
                 />
               </div>
             </div>
-            <div class="fld">
-              <label>Frete ao cliente <span class="ht">R$</span></label>
-              <div class="iw">
-                <span class="pfx">R$</span
-                ><input
-                  type="number"
-                  inputmode="decimal"
-                  id="sf"
-                  value="0"
-                  step="0.01"
-                  min="0"
-                />
-              </div>
-            </div>
           </div>
           <div class="crd">
             <div class="ct">
@@ -474,21 +480,10 @@
                 <select id="sm">
                   <option value="cnpj">CNPJ</option>
                   <option value="cpf">CPF comum</option>
-                  <option value="cpf_high_volume">
-                    CPF alto volume (&gt;450 ped/90d)
-                  </option>
                 </select>
               </div>
             </div>
-            <div class="fld">
-              <label>Programa Frete Grátis</label>
-              <div class="iw">
-                <select id="sfp">
-                  <option value="nao">Não</option>
-                  <option value="sim">Sim (+6%)</option>
-                </select>
-              </div>
-            </div>
+
             <div class="fld">
               <label>Shopee Ads (ACOS) <span class="ht">%</span></label>
               <div class="iw">

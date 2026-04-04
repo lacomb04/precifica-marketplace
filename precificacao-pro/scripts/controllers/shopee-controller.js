@@ -7,26 +7,13 @@ import { renderPricingCard, syncRangeLabel } from "../ui/renderer.js";
 import { PRICING_CARD_PREFIX } from "../config/marketplaces.js";
 import { calculateShopeePrice } from "../domain/calculators/shopee-calculator.js";
 
-const INPUT_IDS = [
-  "sp",
-  "se",
-  "sf",
-  "sm",
-  "sfp",
-  "sa",
-  "spr",
-  "si",
-  "so",
-  "smg",
-];
+const INPUT_IDS = ["sp", "se", "sm", "sfp", "sa", "spr", "si", "so", "smg"];
 
 export const handleShopeeCalculation = () => {
   const input = {
     sellerType: getSelectValue("sm"),
-    programFreeShipping: getSelectValue("sfp"),
     productCost: getInputNumber("sp"),
     packagingCost: getInputNumber("se"),
-    shippingCost: getInputNumber("sf"),
     adsPercent: getInputPercent("sa"),
     promoPercent: getInputPercent("spr"),
     taxPercent: getInputPercent("si"),

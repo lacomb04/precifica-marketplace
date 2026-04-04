@@ -16,7 +16,6 @@ const INPUT_IDS = [
   "co",
   "cmg",
   "csm",
-  "csfp",
   "cmcategory",
   "cmplano",
   "cttipo",
@@ -64,7 +63,6 @@ const buildMarketplaceInputs = (baseInput) => ({
   shopee: {
     ...baseInput,
     sellerType: getSelectValue("csm"),
-    programFreeShipping: getSelectValue("csfp"),
   },
   mercadoLivre: {
     ...baseInput,

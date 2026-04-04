@@ -1,6 +1,4 @@
 import { getMercadoLivreFeeBreakdown } from "../fees/mercado-livre-fees.js";
-import { buildBreakdown } from "../shared/breakdown.js";
-import { isVariableShareInvalid } from "../../core/validators.js";
 
 const emptyBreakdown = () => [
   { label: "Produto", value: 0 },
@@ -42,8 +40,6 @@ export const calculateMercadoLivrePrice = ({
   installmentExtraPercent = 0,
   installmentExtraFixed = 0,
 
-  extraShippingSubsidy = 0,
-
   targetMargin = 0,
 }) => {
   const fixedBaseCosts = productCost + packagingCost + shippingCost;
@@ -66,7 +62,6 @@ export const calculateMercadoLivrePrice = ({
       installmentExtraPercent,
       installmentExtraFixed,
       manualShippingCost: shippingCost,
-      extraShippingSubsidy,
     });
 
     const variableShare =
@@ -92,8 +87,7 @@ export const calculateMercadoLivrePrice = ({
       (fixedBaseCosts +
         desiredProfit +
         feeBreakdown.fixedFee +
-        feeBreakdown.installmentExtra +
-        feeBreakdown.shippingSubsidy) /
+        feeBreakdown.installmentExtra) /
       (1 - variableShare);
 
     if (!Number.isFinite(nextSalePrice) || nextSalePrice <= 0) {
@@ -116,7 +110,6 @@ export const calculateMercadoLivrePrice = ({
     installmentExtraPercent,
     installmentExtraFixed,
     manualShippingCost: shippingCost,
-    extraShippingSubsidy,
   });
 
   const marketingValue = salePrice * marketingPercent;
@@ -157,7 +150,6 @@ export const calculateMercadoLivrePrice = ({
       commissionPercent: finalFees.commissionPercent,
       fixedFee: roundMoney(finalFees.fixedFee),
       installmentExtra: roundMoney(finalFees.installmentExtra),
-      shippingSubsidy: roundMoney(finalFees.shippingSubsidy),
       totalMarketplaceFee: roundMoney(finalFees.totalMarketplaceFee),
       marketingPercent,
       taxPercent,

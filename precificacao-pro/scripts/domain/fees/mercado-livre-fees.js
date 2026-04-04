@@ -90,18 +90,6 @@ export const getMercadoLivreInstallmentExtra = ({
   return salePrice * installmentExtraPercent + installmentExtraFixed;
 };
 
-/**
- * Custo de envio subsidiado pelo vendedor.
- * Deixamos separado porque no ML isso depende de peso, dimensões,
- * reputação, logística e condições do anúncio.
- */
-export const getMercadoLivreShippingSubsidy = ({
-  manualShippingCost = 0,
-  extraShippingSubsidy = 0,
-}) => {
-  return manualShippingCost + extraShippingSubsidy;
-};
-
 export const getMercadoLivreFeeBreakdown = ({
   salePrice,
   categoryKey,
@@ -110,7 +98,6 @@ export const getMercadoLivreFeeBreakdown = ({
   installmentExtraPercent = 0,
   installmentExtraFixed = 0,
   manualShippingCost = 0,
-  extraShippingSubsidy = 0,
 }) => {
   const commissionPercent = getMercadoLivreCommissionPercent({
     categoryKey,
@@ -125,18 +112,12 @@ export const getMercadoLivreFeeBreakdown = ({
     installmentExtraPercent,
     installmentExtraFixed,
   });
-  const shippingSubsidy = getMercadoLivreShippingSubsidy({
-    manualShippingCost,
-    extraShippingSubsidy,
-  });
 
   return {
     commissionPercent,
     commissionValue,
     fixedFee,
     installmentExtra,
-    shippingSubsidy,
-    totalMarketplaceFee:
-      commissionValue + fixedFee + installmentExtra + shippingSubsidy,
+    totalMarketplaceFee: commissionValue + fixedFee + installmentExtra,
   };
 };

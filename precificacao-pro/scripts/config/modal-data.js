@@ -5,7 +5,7 @@ export const MODAL_DATA = {
     items: [
       { label: 'Preço de Compra', tag: 'Obrigatório', tagColor: '#2244ff', description: 'Quanto você pagou ao fornecedor pelo produto.' },
       { label: 'Embalagem', tag: 'Obrigatório', tagColor: '#2244ff', description: 'Custo unitário de embalagem por pedido.' },
-      { label: 'Tipo de Vendedor', tag: 'Shopee', tagColor: '#FF3300', description: 'CNPJ: tabela escalonada por faixa de preço de venda (20%+R$4 até R$79,99; 14%+R$16 de R$80-R$99,99; 14%+R$20 de R$100-R$199,99; 14%+R$26 de R$200-R$499,99 e acima de R$500). CPF comum: 14% + R$7/item. CPF alto volume (>450 pedidos em 90 dias): 14% + R$4/item.' },
+      { label: 'Tipo de Vendedor', tag: 'Shopee', tagColor: '#FF3300', description: 'CNPJ: tabela escalonada por faixa de preço de venda (20%+R$4 até R$79,99; 14%+R$16 de R$80-R$99,99; 14%+R$20 de R$100-R$199,99; 14%+R$26 de R$200-R$499,99 e acima de R$500). CPF comum: 14% + R$7/item.' },
       { label: 'Programa de Frete Grátis', tag: 'Shopee', tagColor: '#FF3300', description: 'Adiciona +6% à comissão percentual. Em troca, a Shopee subsidia o frete ao cliente.' },
       { label: 'Comissão Escalonada (auto)', tag: 'Auto ✓', tagColor: '#0099cc', description: 'A calculadora aplica automaticamente a tabela correta conforme o preço de venda calculado, incluindo a taxa fixa da faixa correspondente.' },
       { label: 'Shopee Ads (ACOS)', tag: 'Opcional', tagColor: '#556', description: '% do preço investido em anúncios patrocinados dentro da Shopee.' },
@@ -19,7 +19,6 @@ export const MODAL_DATA = {
       ['R$200–R$499,99', '14%', 'R$26/item'],
       ['Acima R$500', '14%', 'R$26*'],
       ['CPF comum', '14%', 'R$7/item'],
-      ['CPF >450 ped.', '14%', 'R$4/item'],
     ],
   },
   mercadoLivre: {

@@ -1,7 +1,4 @@
-import {
-  getShopeeCommissionRate,
-  getShopeeFixedFee,
-} from "../fees/shopee-fees.js";
+import { getShopeeFeeBreakdown } from "../fees/shopee-fees.js";
 import { buildBreakdown } from "../shared/breakdown.js";
 import { isVariableShareInvalid } from "../../core/validators.js";
 
@@ -17,10 +14,8 @@ const emptyBreakdown = () => [
 export const calculateShopeePrice = (input) => {
   const {
     sellerType,
-    programFreeShipping,
     productCost,
     packagingCost,
-    shippingCost,
     adsPercent,
     promoPercent,
     taxPercent,
@@ -28,31 +23,62 @@ export const calculateShopeePrice = (input) => {
     targetMargin,
   } = input;
 
-  const commissionPercent = getShopeeCommissionRate({
-    programFreeShipping,
-  });
-
-  const fixedFee = getShopeeFixedFee({
-    sellerType,
-  });
-
   const marketingPercent = adsPercent + promoPercent;
-  const variableShare =
-    commissionPercent + marketingPercent + taxPercent + otherPercent;
+  const extraVariablePercent = marketingPercent + taxPercent + otherPercent;
+  const fixedBaseCosts = productCost + packagingCost;
 
-  if (isVariableShareInvalid(variableShare)) {
+  if (fixedBaseCosts < 0 || targetMargin < 0) {
     return {
       salePrice: 0,
       breakdown: buildBreakdown(emptyBreakdown()),
     };
   }
 
-  const baseCosts = productCost + packagingCost + shippingCost + fixedFee;
-  const desiredProfit = productCost * targetMargin;
+  let salePrice = fixedBaseCosts || 1;
 
-  const salePrice = (baseCosts + desiredProfit) / (1 - variableShare);
+  for (let attempt = 0; attempt < 40; attempt += 1) {
+    const feeBreakdown = getShopeeFeeBreakdown({
+      salePrice,
+      sellerType,
+    });
 
-  const commissionValue = salePrice * commissionPercent;
+    const variableShare =
+      feeBreakdown.commissionPercent +
+      extraVariablePercent;
+
+    if (isVariableShareInvalid(variableShare)) {
+      return {
+        salePrice: 0,
+        breakdown: buildBreakdown(emptyBreakdown()),
+      };
+    }
+
+    const desiredProfit = productCost * targetMargin;
+
+    const nextSalePrice =
+      (fixedBaseCosts + desiredProfit + feeBreakdown.fixedFee) /
+      (1 - variableShare);
+
+    if (!Number.isFinite(nextSalePrice) || nextSalePrice <= 0) {
+      return {
+        salePrice: 0,
+        breakdown: buildBreakdown(emptyBreakdown()),
+      };
+    }
+
+    if (Math.abs(nextSalePrice - salePrice) < 0.01) {
+      salePrice = nextSalePrice;
+      break;
+    }
+
+    salePrice = nextSalePrice;
+  }
+
+  const finalFees = getShopeeFeeBreakdown({
+    salePrice,
+    sellerType,
+  });
+
   const marketingValue = salePrice * marketingPercent;
   const taxValue = salePrice * taxPercent;
   const otherValue = salePrice * otherPercent;
@@ -60,9 +86,7 @@ export const calculateShopeePrice = (input) => {
   const totalCosts =
     productCost +
     packagingCost +
-    shippingCost +
-    fixedFee +
-    commissionValue +
+    finalFees.totalMarketplaceFee +
     marketingValue +
     taxValue +
     otherValue;
@@ -75,7 +99,7 @@ export const calculateShopeePrice = (input) => {
       { label: "Produto", value: productCost + packagingCost },
       {
         label: "Shopee (taxas)",
-        value: commissionValue + fixedFee + shippingCost,
+        value: finalFees.totalMarketplaceFee,
       },
       { label: "Marketing", value: marketingValue },
       { label: "Impostos", value: taxValue },
