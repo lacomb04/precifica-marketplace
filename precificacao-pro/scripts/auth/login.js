@@ -41,7 +41,7 @@ const handleLogin = (event) => {
     show(successBox, true);
     successBox.textContent = "Login ok! Redirecionando...";
     setTimeout(() => {
-      window.location.href = "/precificacaopro";
+      window.location.href = "/";
     }, 600);
     return;
   }
@@ -86,7 +86,7 @@ const consumeToken = () => {
 
   // Placeholder: ao integrar, valide o token no backend.
   setSession({ email: "magic-link-user", provider: "magic_link", token });
-  window.location.href = "/precificacaopro";
+  window.location.href = "/";
 };
 
 const wireUI = () => {
