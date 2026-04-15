@@ -1,0 +1,23 @@
+{
+  "rewrites": [
+    {
+      "source": "/login",
+      "destination": "/precificacao-pro/login.html"
+    },
+    {
+      "source": "/precificacaopro",
+      "destination": "/precificacao-pro/index.html"
+    },
+    {
+      "source": "/precificacaopro/:path*",
+      "destination": "/precificacao-pro/:path*"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/login",
+      "permanent": false
+    }
+  ]
+}

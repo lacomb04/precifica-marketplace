@@ -29,6 +29,6 @@ export const isAuthenticated = () => Boolean(getSession());
 
 export const requireSession = () => {
   if (!isAuthenticated()) {
-    window.location.href = "login.html";
+    window.location.href = "/login";
   }
 };
