@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Acessar - PrecificaçãoPro</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700;900&family=Barlow+Condensed:wght@700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles/pages/login.css" />
+  </head>
+  <body>
+    <main class="card">
+      <div class="logo">Precificação<span>Pro</span></div>
+
+      <section
+        class="form-view"
+        id="formView"
+        aria-label="Formulário de acesso"
+      >
+        <div class="icon-wrap" aria-hidden="true">🔐</div>
+
+        <h1>Acessar o<br /><span>Sistema</span></h1>
+        <p class="subtitle">
+          Digite o e-mail usado na compra.<br />Vamos enviar um link de acesso
+          direto.
+        </p>
+
+        <div class="input-wrap">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#8899bb"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path
+              d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+            />
+            <polyline points="22,6 12,13 2,6" />
+          </svg>
+          <input
+            type="email"
+            id="emailInput"
+            placeholder="seu@email.com"
+            autocomplete="email"
+          />
+        </div>
+
+        <button id="btnEntrar" type="button">Enviar link de acesso</button>
+
+        <div class="msg" id="msgBox" role="status" aria-live="polite"></div>
+      </section>
+
+      <section
+        class="success-view"
+        id="successView"
+        aria-label="Sucesso no envio"
+      >
+        <div class="success-icon" aria-hidden="true">✉️</div>
+
+        <div class="success-title">Link <span>enviado!</span></div>
+
+        <p class="success-desc">
+          Enviamos o link de acesso para<br />
+          <span class="email-highlight" id="emailSent"></span>
+        </p>
+
+        <div class="hint">
+          <strong>Não encontrou?</strong> Verifique a pasta de
+          <strong>spam</strong> ou <strong>lixeira</strong>.<br />
+          O link expira em <strong>1 hora</strong>.
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">&copy; 2026 Scaleon - PrecificaçãoPro</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="scripts/login.js"></script>
+  </body>
+</html>

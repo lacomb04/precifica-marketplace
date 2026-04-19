@@ -6,6 +6,25 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no"
     />
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- Proteção de rota -->
+    <script>
+      const { createClient } = supabase;
+
+      const _supabase = createClient(
+        "https://eexmmgoplxrnhkjrskwo.supabase.co", // sua SUPABASE_URL
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVleG1tZ29wbHhybmhranJza3dvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYzNzQwNDgsImV4cCI6MjA5MTk1MDA0OH0.j5D8z1qf3WLPtIgndPdCxQNg8on1Xilr95DHVba518k", // sua ANON KEY
+      );
+
+      // Verifica sessão antes de carregar o sistema
+      _supabase.auth.getSession().then(({ data: { session } }) => {
+        if (!session) {
+          window.location.replace("/login.html");
+        }
+      });
+    </script>
     <title>Precificação PRO</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800;900&family=Barlow+Condensed:wght@700;800;900&family=JetBrains+Mono:wght@400;500&display=swap"
