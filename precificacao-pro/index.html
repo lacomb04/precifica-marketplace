@@ -18,10 +18,28 @@
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVleG1tZ29wbHhybmhranJza3dvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYzNzQwNDgsImV4cCI6MjA5MTk1MDA0OH0.j5D8z1qf3WLPtIgndPdCxQNg8on1Xilr95DHVba518k", // sua ANON KEY
       );
 
+      window._supabase = _supabase;
+
+      const renderUserStatus = (session) => {
+        const emailEl = document.getElementById("userEmail");
+        const dotEl = document.getElementById("statusDot");
+        if (!emailEl || !dotEl || !session?.user?.email) return;
+        emailEl.textContent = session.user.email;
+      };
+
       // Verifica sessão antes de carregar o sistema
       _supabase.auth.getSession().then(({ data: { session } }) => {
         if (!session) {
           window.location.replace("/login.html");
+          return;
+        }
+
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", () =>
+            renderUserStatus(session),
+          );
+        } else {
+          renderUserStatus(session);
         }
       });
     </script>
@@ -41,6 +59,10 @@
     <nav class="nav">
       <div class="brand" id="brandHome">
         Precificação <span style="color: var(--accent)">PRO</span>
+      </div>
+      <div id="userStatus" aria-live="polite">
+        <span id="statusDot"></span>
+        <span id="userEmail"></span>
       </div>
       <div class="nb" id="navBack">← Voltar ao início</div>
       <div class="nb" id="navLogout">Sair</div>

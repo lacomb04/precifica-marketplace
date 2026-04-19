@@ -48,6 +48,43 @@
   display: flex;
 }
 
+#userStatus {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+  margin-right: 12px;
+  min-width: 0;
+  font-size: 13px;
+  color: #8899bb;
+}
+
+#userEmail {
+  max-width: 240px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#statusDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #00e676;
+  box-shadow: 0 0 6px #00e676;
+  flex-shrink: 0;
+}
+
+@media (max-width: 900px) {
+  #userStatus {
+    max-width: 44vw;
+  }
+
+  #userEmail {
+    max-width: 100%;
+  }
+}
+
 .cw {
   max-width: 900px;
   margin: 0 auto;
