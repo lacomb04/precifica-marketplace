@@ -2,7 +2,8 @@ export const SHOPEE_BASE_COMMISSION_RATE = 0.14;
 
 // Ajuste aqui se a Shopee mudar novamente.
 export const SHOPEE_FIXED_FEES = {
-  cpf: 7,
+  cpf: 4,
+  cpf_high_volume: 7,
 };
 
 export const SHOPEE_CNPJ_TIERS = [
@@ -34,6 +35,34 @@ export const SHOPEE_CNPJ_TIERS = [
 ];
 
 export const SHOPEE_CPF_TIERS = [
+  {
+    maxPriceExclusive: 80,
+    commissionPercent: 0.2,
+    fixedFee: 4,
+  },
+  {
+    maxPriceExclusive: 100,
+    commissionPercent: 0.14,
+    fixedFee: 16,
+  },
+  {
+    maxPriceExclusive: 200,
+    commissionPercent: 0.14,
+    fixedFee: 20,
+  },
+  {
+    maxPriceExclusive: 500,
+    commissionPercent: 0.14,
+    fixedFee: 26,
+  },
+  {
+    maxPriceExclusive: Number.POSITIVE_INFINITY,
+    commissionPercent: 0.14,
+    fixedFee: 26,
+  },
+];
+
+export const SHOPEE_CPF_HIGH_VOLUME_TIERS = [
   {
     maxPriceExclusive: 80,
     commissionPercent: 0.2,
@@ -81,6 +110,16 @@ const getShopeeCpfTier = (salePrice) => {
   return SHOPEE_CPF_TIERS[SHOPEE_CPF_TIERS.length - 1];
 };
 
+const getShopeeCpfHighVolumeTier = (salePrice) => {
+  for (const tier of SHOPEE_CPF_HIGH_VOLUME_TIERS) {
+    if (salePrice < tier.maxPriceExclusive) {
+      return tier;
+    }
+  }
+
+  return SHOPEE_CPF_HIGH_VOLUME_TIERS[SHOPEE_CPF_HIGH_VOLUME_TIERS.length - 1];
+};
+
 export const getShopeeFeeBreakdown = ({ salePrice, sellerType }) => {
   if (!Number.isFinite(salePrice) || salePrice <= 0) {
     return {
@@ -105,6 +144,18 @@ export const getShopeeFeeBreakdown = ({ salePrice, sellerType }) => {
 
   if (sellerType === "cpf") {
     const tier = getShopeeCpfTier(salePrice);
+    const commissionValue = salePrice * tier.commissionPercent;
+
+    return {
+      commissionPercent: tier.commissionPercent,
+      commissionValue,
+      fixedFee: tier.fixedFee,
+      totalMarketplaceFee: commissionValue + tier.fixedFee,
+    };
+  }
+
+  if (sellerType === "cpf_high_volume") {
+    const tier = getShopeeCpfHighVolumeTier(salePrice);
     const commissionValue = salePrice * tier.commissionPercent;
 
     return {

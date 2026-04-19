@@ -5,20 +5,20 @@ export const MODAL_DATA = {
     items: [
       { label: 'Preço de Compra', tag: 'Obrigatório', tagColor: '#2244ff', description: 'Quanto você pagou ao fornecedor pelo produto.' },
       { label: 'Embalagem', tag: 'Obrigatório', tagColor: '#2244ff', description: 'Custo unitário de embalagem por pedido.' },
-      { label: 'Tipo de Vendedor', tag: 'Shopee', tagColor: '#FF3300', description: 'CNPJ: tabela escalonada por faixa de preço de venda (20%+R$4 até R$79,99; 14%+R$16 de R$80-R$99,99; 14%+R$20 de R$100-R$199,99; 14%+R$26 de R$200-R$499,99 e acima de R$500). CPF comum: 14% + R$7/item.' },
+      { label: 'Tipo de Vendedor', tag: 'Shopee', tagColor: '#FF3300', description: 'CNPJ e CPF comum: tabela escalonada por faixa de preço (20%+R$4 até R$79,99; 14%+R$16 de R$80-R$99,99; 14%+R$20 de R$100-R$199,99; 14%+R$26 de R$200-R$499,99 e acima de R$500). CPF alto volume (450+ pedidos/90 dias): mesma tabela com adicional de R$3/item vendido.' },
       { label: 'Programa de Frete Grátis', tag: 'Shopee', tagColor: '#FF3300', description: 'Adiciona +6% à comissão percentual. Em troca, a Shopee subsidia o frete ao cliente.' },
       { label: 'Comissão Escalonada (auto)', tag: 'Auto ✓', tagColor: '#0099cc', description: 'A calculadora aplica automaticamente a tabela correta conforme o preço de venda calculado, incluindo a taxa fixa da faixa correspondente.' },
       { label: 'Shopee Ads (ACOS)', tag: 'Opcional', tagColor: '#556', description: '% do preço investido em anúncios patrocinados dentro da Shopee.' },
       { label: 'Imposto', tag: 'Obrigatório', tagColor: '#cc2244', description: 'Alíquota efetiva do seu regime. MEI ~0%, Simples ~4-19,5%.' },
     ],
     table: [
-      ['Faixa (CNPJ)', '%', 'Taxa Fixa'],
+      ['Faixa (CNPJ/CPF comum)', '%', 'Taxa Fixa'],
       ['Até R$79,99', '20%', 'R$4/item'],
       ['R$80–R$99,99', '14%', 'R$16/item'],
       ['R$100–R$199,99', '14%', 'R$20/item'],
       ['R$200–R$499,99', '14%', 'R$26/item'],
       ['Acima R$500', '14%', 'R$26*'],
-      ['CPF comum', '14%', 'R$7/item'],
+      ['CPF alto volume', '+R$3/item', 'sobre a taxa fixa da faixa'],
     ],
   },
   mercadoLivre: {
