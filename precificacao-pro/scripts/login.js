@@ -12,6 +12,7 @@ const formView = document.getElementById("formView");
 const successView = document.getElementById("successView");
 const emailSent = document.getElementById("emailSent");
 
+// Se já tem sessão ativa vai direto pro sistema
 supabaseClient.auth.getSession().then(({ data: { session } }) => {
   if (session) {
     window.location.href = "/index.html";
@@ -20,9 +21,7 @@ supabaseClient.auth.getSession().then(({ data: { session } }) => {
 
 btnEntrar.addEventListener("click", handleLogin);
 emailInput.addEventListener("keydown", (event) => {
-  if (event.key === "Enter") {
-    handleLogin();
-  }
+  if (event.key === "Enter") handleLogin();
 });
 
 async function handleLogin() {
@@ -38,18 +37,16 @@ async function handleLogin() {
   hideMsg();
 
   try {
+    // 1. Verifica se o e-mail tem acesso via Edge Function
     const { data, error } = await supabaseClient.functions.invoke(
       "verificar-acesso",
-      {
-        body: { email: email.toLowerCase() },
-      },
+      { body: { email: email.toLowerCase() } },
     );
 
-    if (error) {
-      throw error;
-    }
+    if (error) throw error;
 
     if (!data?.temAcesso) {
+      // Sem acesso → redireciona para página de vendas
       showMsg(
         "Este e-mail não possui acesso. Redirecionando para a página de vendas...",
         "info",
@@ -61,17 +58,22 @@ async function handleLogin() {
       return;
     }
 
-    const { error: otpError } = await supabaseClient.auth.signInWithOtp({
-      email: email.toLowerCase(),
-      options: {
-        emailRedirectTo: "https://precificacaopro.scaleonbr.com.br/index.html",
+    // 2. Tem acesso → chama n8n para gerar magic link e enviar e-mail bonito
+    const response = await fetch(
+      "https://scaleonbr.app.n8n.cloud/webhook/enviar-magic-link",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-webhook-token": "PrecPro@2026#ScaleonBR",
+        },
+        body: JSON.stringify({ email: email.toLowerCase() }),
       },
-    });
+    );
 
-    if (otpError) {
-      throw otpError;
-    }
+    if (!response.ok) throw new Error("Erro ao enviar");
 
+    // Mostra tela de sucesso
     emailSent.textContent = email;
     formView.classList.add("hide");
     successView.classList.add("show");
