@@ -27,20 +27,18 @@
         emailEl.textContent = session.user.email;
       };
 
-      // Verifica sessão antes de carregar o sistema
+      // Preenche status apenas quando houver sessao; o gate principal roda no app.js
       _supabase.auth.getSession().then(({ data: { session } }) => {
-        if (!session) {
-          window.location.replace("/login.html");
+        if (!session) return;
+
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", () => {
+            renderUserStatus(session);
+          });
           return;
         }
 
-        if (document.readyState === "loading") {
-          document.addEventListener("DOMContentLoaded", () =>
-            renderUserStatus(session),
-          );
-        } else {
-          renderUserStatus(session);
-        }
+        renderUserStatus(session);
       });
     </script>
     <title>Precificação PRO</title>
@@ -64,6 +62,7 @@
       <div id="userStatus" aria-live="polite">
         <span id="statusDot"></span>
         <span id="userEmail"></span>
+        <span id="trialTimer" aria-live="polite"></span>
       </div>
       <div class="nb" id="navBack">← Voltar ao início</div>
       <div class="nb" id="navLogout">Sair</div>

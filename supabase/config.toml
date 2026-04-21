@@ -1,0 +1,14 @@
+[functions.verificar-acesso]
+verify_jwt = false
+
+[functions.trial-consumir-token]
+verify_jwt = false
+
+[functions.trial-validar-token]
+verify_jwt = false
+
+[functions.trial-gerar-link]
+verify_jwt = false
+
+[functions.trial-dashboard]
+verify_jwt = false

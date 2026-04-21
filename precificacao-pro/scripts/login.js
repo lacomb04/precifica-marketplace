@@ -11,9 +11,72 @@ const msgBox = document.getElementById("msgBox");
 const formView = document.getElementById("formView");
 const successView = document.getElementById("successView");
 const emailSent = document.getElementById("emailSent");
+const vendaUrl = "https://paginavendaprecificacao.scaleonbr.com.br/index.html";
+
+const saveTrialAccess = (payload) => {
+  localStorage.setItem(
+    "precificacao_trial_access_v1",
+    JSON.stringify({
+      token: payload.token,
+      expiresAt: payload.expiresAt,
+      customerEmail: payload.customerEmail || "",
+    }),
+  );
+};
+
+const consumeTrialTokenFromUrl = async () => {
+  const params = new URLSearchParams(window.location.search);
+  const trialToken = params.get("trial_token");
+
+  if (!trialToken) return false;
+
+  btnEntrar.disabled = true;
+  btnEntrar.textContent = "Validando teste gratis...";
+
+  try {
+    const { data, error } = await supabaseClient.functions.invoke(
+      "trial-consumir-token",
+      {
+        body: { token: trialToken },
+      },
+    );
+
+    if (error || !data?.ok || !data?.expiresAt) {
+      throw new Error("Token de teste invalido ou expirado");
+    }
+
+    saveTrialAccess({
+      token: data.accessToken || trialToken,
+      expiresAt: data.expiresAt,
+      customerEmail: data.customerEmail || "Teste gratis",
+    });
+
+    params.delete("trial_token");
+    const nextQuery = params.toString();
+    const nextUrl = nextQuery ? `/index.html?${nextQuery}` : "/index.html";
+    window.location.replace(nextUrl);
+    return true;
+  } catch (error) {
+    console.error(error);
+    showMsg(
+      "Seu link de teste gratis e invalido ou expirou. Redirecionando para venda...",
+      "error",
+    );
+    window.setTimeout(() => {
+      window.location.replace(vendaUrl);
+    }, 2500);
+    return true;
+  } finally {
+    btnEntrar.disabled = false;
+    btnEntrar.textContent = "Enviar link de acesso";
+  }
+};
 
 // Se já tem sessão ativa vai direto pro sistema
-supabaseClient.auth.getSession().then(({ data: { session } }) => {
+supabaseClient.auth.getSession().then(async ({ data: { session } }) => {
+  const trialFlowExecuted = await consumeTrialTokenFromUrl();
+  if (trialFlowExecuted) return;
+
   if (session) {
     window.location.href = "/index.html";
   }
@@ -53,7 +116,7 @@ async function handleLogin() {
       );
       setTimeout(() => {
         window.location.href =
-          "https://paginavendaprecificacao.scaleonbr.com.br/index.html";
+          vendaUrl;
       }, 2000);
       return;
     }

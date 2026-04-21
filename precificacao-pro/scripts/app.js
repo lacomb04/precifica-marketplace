@@ -20,7 +20,13 @@ import {
   bindComparisonInputs,
   handleComparisonCalculation,
 } from "./controllers/comparison-controller.js";
-import { requireSession, clearSession, getSession } from "./auth/auth.js";
+import { clearSession, resolveAccess } from "./auth/auth.js";
+import {
+  clearTrialAccess,
+  formatRemaining,
+  getRemainingSeconds,
+  redirectToSalePage,
+} from "./auth/trial-access.js";
 import { normalizeNumberInputs } from "./core/dom.js";
 
 const MARKETPLACE_KEYS = {
@@ -59,6 +65,7 @@ const bindNavigation = () => {
   backButton?.addEventListener("click", showHome);
   logoutButton?.addEventListener("click", () => {
     clearSession();
+    clearTrialAccess();
     window.location.href = "login.html";
   });
 
@@ -95,8 +102,52 @@ const bindRangeLabels = () => {
   });
 };
 
-const boot = () => {
-  requireSession();
+const bindTrialTimer = (trialData) => {
+  const timerEl = document.getElementById("trialTimer");
+  if (!timerEl) return;
+
+  timerEl.classList.add("show");
+
+  const refreshTimer = () => {
+    const remaining = getRemainingSeconds(trialData.expiresAt);
+    if (remaining <= 0) {
+      clearTrialAccess();
+      redirectToSalePage();
+      return;
+    }
+
+    timerEl.textContent = `Teste gratis: ${formatRemaining(remaining)}`;
+  };
+
+  refreshTimer();
+  window.setInterval(refreshTimer, 1000);
+};
+
+const applyIdentity = (access) => {
+  const emailEl = document.getElementById("userEmail");
+  const dotEl = document.getElementById("statusDot");
+  if (!emailEl || !dotEl) return;
+
+  emailEl.textContent = access.label;
+  if (access.mode === "trial") {
+    dotEl.style.background = "#ffb020";
+    dotEl.style.boxShadow = "0 0 6px #ffb020";
+  }
+};
+
+const boot = async () => {
+  const access = await resolveAccess();
+  if (!access) {
+    window.location.replace("/login.html");
+    return;
+  }
+
+  applyIdentity(access);
+
+  if (access.mode === "trial") {
+    bindTrialTimer(access.trial);
+  }
+
   normalizeNumberInputs();
   bindNavigation();
   calculatorBindings.forEach((bind) => bind());

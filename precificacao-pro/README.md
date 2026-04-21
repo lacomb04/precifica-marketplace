@@ -66,3 +66,43 @@ Abra `index.html` em qualquer servidor estático (ou direto no navegador). O có
 - Utilitários comuns (DOM e formatadores) ficam em `scripts/core/`.
 - Dados de apoio e textos dos modais estão em `scripts/config/`.
 - Quebra de CSS por camada: base, layout, componentes, temas e páginas.
+
+## Fluxo de teste gratis (30 minutos)
+
+Foi adicionado um fluxo de teste temporario com token unico e painel admin isolado.
+
+- Painel admin isolado: `painel-admin-trial.html`
+- Script do painel: `scripts/admin-trial.js`
+- Controle do token no cliente: `scripts/auth/trial-access.js`
+- Gate de acesso no app: `scripts/auth/auth.js` e `scripts/app.js`
+
+### Edge Functions esperadas (Supabase)
+
+Para o fluxo funcionar com seguranca real, implemente no backend as funcoes abaixo:
+
+1. `trial-gerar-link`
+- Entrada: `email`, `durationMinutes`, `adminKey`
+- Regra: validar admin (chave + allowlist/IP)
+- Saida: `trialLink` com `trial_token` unico e uso unico
+
+2. `trial-consumir-token`
+- Entrada: `token`
+- Regra: token deve ser valido, nao usado, nao expirado
+- Acao: marcar token como consumido e iniciar janela de 30 min
+- Saida: `ok`, `expiresAt`, `accessToken`, `customerEmail`
+
+3. `trial-validar-token`
+- Entrada: `token`
+- Regra: token ativo e dentro da expiracao
+- Saida: `valido`, `expiresAt`
+
+4. `trial-dashboard`
+- Entrada: autenticacao admin
+- Saida: `createdToday`, `activeTrials`, `onlineUsers`, `sessions[]`
+
+### Recomendacoes de seguranca
+
+- Hospedar `painel-admin-trial.html` em dominio separado do sistema principal.
+- Proteger o painel com autenticacao forte e, idealmente, restricao por IP/VPN.
+- Nunca confiar somente em validacao no front-end para tempo de acesso.
+- Bloquear o acesso no backend ao expirar e redirecionar para pagina de vendas.

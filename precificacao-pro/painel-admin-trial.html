@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Painel Admin - Teste Gratis</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700;900&family=JetBrains+Mono:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles/pages/admin-trial.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <p class="eyebrow">Painel isolado</p>
+        <h1>Admin de Teste Gratis</h1>
+        <p>
+          Este painel deve ser publicado em ambiente separado do sistema
+          principal e protegido por rede/IP + autenticação de admin.
+        </p>
+      </section>
+
+      <section class="card" id="authCard">
+        <h2>Login do admin</h2>
+        <div class="grid grid-auth">
+          <label>
+            E-mail do admin
+            <input
+              id="adminEmail"
+              type="email"
+              placeholder="admin@empresa.com"
+            />
+          </label>
+
+          <label>
+            Senha do admin
+            <input id="adminPassword" type="password" placeholder="Sua senha" />
+          </label>
+        </div>
+
+        <div class="auth-actions">
+          <button id="btnLoginAdmin" type="button">Entrar no painel</button>
+          <button id="btnLogoutAdmin" type="button" class="secondary" disabled>
+            Sair
+          </button>
+        </div>
+
+        <p id="authMsg" class="msg" aria-live="polite"></p>
+        <p id="authUser" class="msg" aria-live="polite"></p>
+      </section>
+
+      <section class="card" id="generatorCard" hidden>
+        <h2>Gerar link unico (30 min)</h2>
+        <div class="grid">
+          <label>
+            E-mail do cliente
+            <input
+              id="trialEmail"
+              type="email"
+              placeholder="cliente@email.com"
+            />
+          </label>
+
+          <label>
+            Duracao (minutos)
+            <input
+              id="trialMinutes"
+              type="number"
+              min="1"
+              max="180"
+              value="30"
+            />
+          </label>
+        </div>
+
+        <button id="btnGenerate" type="button">Gerar teste gratis</button>
+        <p id="generateMsg" class="msg" aria-live="polite"></p>
+
+        <div class="result" id="resultBox" hidden>
+          <p>Link pronto:</p>
+          <textarea id="generatedLink" readonly></textarea>
+          <button id="btnCopyLink" type="button" class="secondary">
+            Copiar link
+          </button>
+        </div>
+      </section>
+
+      <section class="card" id="dashboardCard" hidden>
+        <div class="row">
+          <h2>Dashboard</h2>
+          <button id="btnRefresh" type="button" class="secondary">
+            Atualizar
+          </button>
+        </div>
+        <p id="dashboardMsg" class="msg" aria-live="polite"></p>
+
+        <div class="kpis">
+          <article>
+            <span>Testes criados hoje</span>
+            <strong id="kpiCreated">-</strong>
+          </article>
+          <article>
+            <span>Testes ativos</span>
+            <strong id="kpiActive">-</strong>
+          </article>
+          <article>
+            <span>Usuarios logados agora</span>
+            <strong id="kpiOnline">-</strong>
+          </article>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>E-mail</th>
+                <th>Status</th>
+                <th>Expira em</th>
+              </tr>
+            </thead>
+            <tbody id="dashboardRows">
+              <tr>
+                <td colspan="3">Sem dados ainda.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="scripts/admin-trial.js"></script>
+  </body>
+</html>

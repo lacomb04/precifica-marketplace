@@ -66,6 +66,22 @@
   white-space: nowrap;
 }
 
+#trialTimer {
+  display: none;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 176, 32, 0.4);
+  background: rgba(255, 176, 32, 0.12);
+  color: #ffd58a;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.4px;
+}
+
+#trialTimer.show {
+  display: inline-flex;
+}
+
 #statusDot {
   width: 8px;
   height: 8px;
